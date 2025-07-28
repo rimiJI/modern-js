@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <p id="resultage">당신의 나이는 ? 입니다</p>
+    <script>
+      // prompt
+      let age = prompt("나이 입력", 100);
+      alert(`당신의 나이는 ${age}살 입니다`);
+
+      let age2 = prompt("선택값 없는 나이 입력");
+
+      document.getElementById(
+        "resultage"
+      ).innerHTML = `당신의 나이는 ${age2} 입니다`;
+      
+      // confirm
+      let me = confirm("당신은 천재인가요?");
+      alert(me);
+    </script>
+  </body>
+</html>
