@@ -1,7 +1,7 @@
 # modern-js
 Modern JavaScript Tutorials
 ---
-🧶는 2순위 
+🧶는 2순위 🚧 한번 더 볼것
 ### 소개
 자바스크립트란?<br>
 매뉴얼과 명세서<br>
