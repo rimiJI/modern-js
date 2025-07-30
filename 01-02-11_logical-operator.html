@@ -2,6 +2,7 @@
 <body>
   <p id="print">값</p>
   <p id="print2">값</p>
+  <p id="print3">값</p>
   <script>
     // OR연산자 출력연습
     const ORoutput = null || 2 || undefined;
@@ -35,13 +36,21 @@
     // age(나이)가 14세 이상 90세 이하에 속하는지를 확인하는 if문을 작성하세요.
     // 때잉... if (14<=age<=19)이건 파이썬에서만 작동한다.
     //JS에선 연속 비교 문법은 지원하지 않음. 좌측 비교 결과가 Boolean이라 오작동
-    let age = prompt('나이를 입력하세요', 100 + `살`);
-    if (age>=14 && age<=19) {
-         console.log('청소년입니다.')
+    let age = prompt("나이를 입력하세요", 100 + `살`);
+    if (age >= 14 && age <= 19) {
+      console.log("청소년입니다.");
+      document.getElementById("print3").innerHTML = "청소년입니다.";
     } else {
-        console.log('청소년이 아닙니다.')
+      console.log("청소년이 아닙니다.");
+      document.getElementById("print3").innerHTML = "청소년이 아닙니다.";
     }
 
-
+    // 바깥범위 확인 (틀린문제)
+    // age(나이)가 14세 이상 90세 이하에 속하지 않는지를 확인하는 if문을 작성하세요.
+    // 답안은 NOT ! 연산자를 사용한 답안과 사용하지 않은 답안 2가지를 제출해 주세요.
+    if (age < 14 || age > 90) {
+    }
+    if (!(age >= 14 && age <= 90)) {
+    }
   </script>
 </body>
