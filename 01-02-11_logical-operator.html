@@ -1,28 +1,47 @@
 <head></head>
 <body>
-    <p id="print">값</p>
-    <script>
-        // OR연산자 출력연습
-        const ORoutput=null||2||undefined;
-        document.getElementById('print').innerHTML=`OR연산자 출력연습: ${ORoutput}`;
-        // alert(ORoutput);
+  <p id="print">값</p>
+  <p id="print2">값</p>
+  <script>
+    // OR연산자 출력연습
+    const ORoutput = null || 2 || undefined;
+    document.getElementById("print").innerHTML = `OR연산자 출력: ${ORoutput}`;
+    // alert(ORoutput);
 
-        // OR 연산자의 피연산자가 alert 라면? 이거 내가 위에서 의문가졌던거다
-        // alert메서드는 값을 반환하지 않는다. 즉 undefined를 반환
-        // 3출력후 undefined 반환 -> 다음 4값 평가 truthy로 판단후 stop. 
-        // 4는 alert의 제일 바깥 피연산자가 된다
-        //평가가 alert(5)까지 진행되지 않기 때문에 5는 출력되지 않음
-        alert(alert(3)||4||alert(5)); 
-        
+    // OR 연산자의 피연산자가 alert 라면? 이거 내가 위에서 의문가졌던거다
+    // alert메서드는 값을 반환하지 않는다. 즉 undefined를 반환
+    // 3출력후 undefined 반환 -> 다음 4값 평가 truthy로 판단후 stop.
+    // 4는 alert의 제일 바깥 피연산자가 된다
+    //평가가 alert(5)까지 진행되지 않기 때문에 5는 출력되지 않음
+    alert(alert(3) || 4 || alert(5));
 
-        //AND 연산 결과.
-        alert(6 && null && 7);
+    //AND 연산 결과.
+    alert(6 && null && 7);
 
-        //AND 연산자의 피연산자가 alert 라면?
-        // alert8부터 실행된 뒤(메시지만 띄워줌) undefined 반환.
-        //첫번째 값이 falsy니깐, 8이후 멈춤.
-        alert( alert(8) && alert(9));
+    //AND 연산자의 피연산자가 alert 라면?
+    // alert8부터 실행된 뒤(메시지만 띄워줌) undefined 반환.
+    //첫번째 값이 falsy니깐, 8이후 멈춤.
+    const ANDoutput = alert(8) && alert(9);
+    document.getElementById(
+      "print2"
+    ).innerHTML = `AND연산자 출력: ${ANDoutput}`;
+    alert(ANDoutput);
+
+    // OR AND OR 연산자로 구성된 표현식
+    //우선순위 ! && || 순, &&로 falsy값이 없어 마지막 truthy값을 반환
+    //null || 11 || 12 OR연산자는 제일 왼쪽에 나온 truthy 값을 반환 -> 11
+    alert(null || (10 && 11) || 12);
+
+    // age(나이)가 14세 이상 90세 이하에 속하는지를 확인하는 if문을 작성하세요.
+    // 때잉... if (14<=age<=19)이건 파이썬에서만 작동한다.
+    //JS에선 연속 비교 문법은 지원하지 않음. 좌측 비교 결과가 Boolean이라 오작동
+    let age = prompt('나이를 입력하세요', 100 + `살`);
+    if (age>=14 && age<=19) {
+         console.log('청소년입니다.')
+    } else {
+        console.log('청소년이 아닙니다.')
+    }
 
 
-    </script>
+  </script>
 </body>
