@@ -7,9 +7,21 @@
   <body>
     <script>
       let userID = prompt("Check your permissions ");
+      let userPW;
 
       if (userID == "admin") {
-       detfㅇ
+        userPW = prompt("Enter your Passward. Are you TheMaster?");
+        if (userPW == "TheMaster") {
+          alert("Welcome!");
+        } else if (userPW == "" || userPW == null) {
+          alert("Canceled");
+        } else {
+          alert("Wrong password");
+        }
+      } else if (userID == "" || userID == null) {
+        alert("Canceled");
+      } else {
+        alert("Wrong password");
       }
     </script>
   </body>
