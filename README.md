@@ -19,9 +19,9 @@ alert, prompt, confirm을 이용한 상호작용<br>
 🧶기본 연산자와 수학<br>
 🚧비교 연산자<br>
 if와 '?'를 사용한 조건 처리<br>
-🏃‍➡️논리 연산자<br>
+논리 연산자<br>
 🧶nullish 병합 연산자 '??'<br>
-while과 for 반복문<br>
+🏃‍➡️while과 for 반복문<br>
 🧶switch문<br>
 함수<br>
 함수 표현식<br>
