@@ -1,0 +1,18 @@
+<head></head>
+<body>
+  <script>
+    // 물음표 연산자 ? 사용한 해답
+    let age = prompt("나이는?");
+
+    function checkAge(age) {
+      return age > 18 ? true : confirm("보호자의 동의를 받으셨나요????");
+    }
+
+    checkAge();
+
+    // OR연산자 ||를 사용한 해답
+    function checkOR(age) {
+      return age > 18 || confirm("보호자의 동의를 받으셨나요?");
+    }
+  </script>
+</body>
