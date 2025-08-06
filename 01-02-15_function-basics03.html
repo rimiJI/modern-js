@@ -1,0 +1,50 @@
+<head>
+    <!-- Pretendard -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/pretendard@1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css"
+  />
+  <!-- Noto Sans KR -->
+  <link 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    html {
+      font-size: 16px; /* 기준값 */
+    }
+    body {
+      font-family: "Pretendard Variable ", "Noto Sans KR", sans-serif;
+      font-size: 2rem; /* 보통 1rem = 16px */
+      color:rgb(180, 180, 180)
+    }
+  </style>
+</head>
+
+
+
+<body>
+  <div class="text-list">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+
+  <script>
+    // return을 만나면 함수실행은 즉시 중단.
+    // 함수를 호출한 곳에 값반환. 할당
+    function sum(a, b) {
+      return a + b;
+    }
+
+    let Result1 = sum(1, 3);
+    let Result2 = sum(3, 3);
+    document.querySelectorAll(".text-list p")[0].innerHTML = Result1 + '가 나왔어용용구리구리!!!';
+    document.getElementsByClassName("text-list")[0].getElementsByTagName("p")[1].innerHTML = Result2;
+  </script>
+</body>
