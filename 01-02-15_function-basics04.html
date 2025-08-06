@@ -1,0 +1,30 @@
+<!-- 반환 값 예제 - 접속 나이 판별기  -->
+<head></head>
+<body>
+  <script>
+    let age = prompt("나이를 알려주세요", 100);
+
+
+    
+    function checkAge(a) {
+      if (a >= 18) {
+        console.log("checkAge의 반환값: true");
+        return true;
+      } else {
+        console.log("checkAge의 반환값: false");
+        return confirm("보호자의 동의를 받으셨나요?"); //확인,취소로 리턴값 반환
+      }
+    }
+
+
+
+    if (checkAge(age)) {
+      console.log("true값으로 if문 통과");
+      alert("접속 허용");
+    } 
+    else {
+      console.log("false값으로 else문 작동");
+      alert("접속 불가!");
+    }
+  </script>
+</body>

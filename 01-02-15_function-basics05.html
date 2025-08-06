@@ -1,0 +1,38 @@
+<!-- 반환 값 예제 - 접속 나이 영화상형 함수  -->
+<!-- 순서 ! 
+checkAge로 나이 판별기
+ fale값이면 (나이판별기가 True가 아니면) 바로 함수종료
+ 아니면 
+ showMovie함수로 
+ 영화상영을 계속 띄워줌  -->
+
+<head></head>
+<body>
+  <script>
+    let age = prompt("나이를 알려주세요.", 2);
+
+    //checkAge함수
+    function checkAge(a) {
+      if (a >= 18) {
+        return true;
+      } else {
+        //한번 더 확인
+        return confirm("부모님이랑 같이왔나요?");
+      }
+    }
+
+    function showMovie() {
+      //checkAge(age) → 사용자가 입력한 나이에 따라 true 또는 false 반환
+      // 그걸 ! (not) 로 뒤집어서 → 조건 만족 여부에 따라 흐름을 제어
+      
+      //아래 !checkAge(age) 이부분 헷갈린다. 
+      if (!checkAge(age)) {
+        console.log("어린데 혼자왔군요! return나와서 종료합니다.");
+        return; //그냥 종료하시오
+      }
+      alert("영화 상영중....");
+    }
+
+    showMovie();
+  </script>
+</body>
