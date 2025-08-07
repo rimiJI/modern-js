@@ -1,0 +1,22 @@
+<!-- 화살표 함수 -->
+<!-- 
+    인수가 하나라면? 괄호 생략가능 
+    인수가 하나도 없다면? 괄호 비워놓으셈 
+     -->
+
+<head></head>
+<body>
+  <script>
+    // 인수가 하나
+    let paraOne = (n) => n * 2;
+    console.log("paraOne함수 실행 → "+paraOne(3));
+
+    // 인수 없네
+    let paraNaN = () => alert('인수없음!');
+    console.log('1.함수값 → '+paraNaN());
+    console.log('2.함수코드 → \n' + paraNaN); // \n은 콘솔용 줄바꿈 
+    document.body.innerHTML += '3.함수코드 → <br>' + paraNaN ; //<br>은 HTML 줄바꿈
+    paraNaN();
+
+  </script>
+</body>

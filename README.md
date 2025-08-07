@@ -1,7 +1,7 @@
 # modern-js
 Modern JavaScript Tutorials
 ---
-🧶는 2순위 🚧 한번 더 볼것
+🦕는 브라키오사우르스 수준 중요 🧶는 2순위 🚧 한번 더 볼것
 ### 소개
 자바스크립트란?<br>
 매뉴얼과 명세서<br>
@@ -30,32 +30,33 @@ while과 for 반복문<br>
 
 ### 코드 품질
 Chrome으로 디버깅하기<br>
-코딩 스타일<br>
-주석<br>
-닌자 코드<br>
+🧶코딩 스타일<br>
+🧶주석<br>
+🧶닌자 코드<br>
 테스트 자동화와 Mocha<br>
-폴리필
+🧶폴리필<br>
 
 ### 객체: 기본
 객체<br>
 참조에 의한 객체 복사<br>
-가비지 컬렉션<br>
+🧶가비지 컬렉션<br>
 메서드와 this<br>
 new 연산자와 생성자 함수<br>
-옵셔널 체이닝 '?.'<br>
-심볼형<br>
-객체를 원시형으로 변환하기
+🧶옵셔널 체이닝 '?.'<br>
+🧶심볼형<br>
+객체를 원시형으로 변환하기<br>
 
 ### 자료구조와 자료형
-원시값의 메서드<br>
-숫자형<br>
+🧶원시값의 메서드<br>
+🧶숫자형<br>
 문자열<br>
 배열<br>
-배열과 메서드<br>
-iterable 객체<br>
+🦕배열과 메서드<br>
+🧶iterable 객체<br>
 맵과 셋<br>
-위크맵과 위크셋<br>
-Object.keys, values, entries<br>
-구조 분해 할당<br>
+🧶위크맵과 위크셋<br>
+🦕Object.keys, values, entries<br>
+🦕구조 분해 할당<br>
 Date 객체와 날짜<br>
-JSON과 메서드
+🦕JSON과 메서드<br>
+
