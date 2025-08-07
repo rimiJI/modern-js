@@ -1,0 +1,45 @@
+<!-- 함수 표현식 function expression -->
+
+<!-- 
+JS에서는 함수를 특별한 종류의 값으로 취급
+ ('다른 언어에서는 특별한 동작을 하는 구조'처럼 취급함)
+ 앞전처럼 함수 선언(Function Declaration)식 방식 말고
+ 함수 표현식 방식으로 만들어보기.
+ 
+함수의 본질은 값.
+함수코드 출력, 복사해 다른 변수에 할당
+모두 가능
+
+함수선언식엔 세미콜론 없고
+함수표현식에 세미콜론 붙는이유
+let으로 시작하여 코드블록이아닌 값처럼 취급되 변수에 할당되기 때문
+모든 구문엔 ; 붙이는게 좋다. 
+-->
+
+<head></head>
+<body>
+  <script>
+    // 🍅함수선언식
+    function Hi() {
+      alert("선언 함수가 실행되었습니다.");
+      return "...Hello👾";
+    }
+
+    let copyHi = Hi;
+    Hi();
+    copyHi();
+
+    alert(copyHi + "→ 코드 출력");
+    alert(copyHi() + "→ 함수 출력");
+
+    // 🍅함수표현식
+    let sayHi = function () {
+      alert("함수표현식으로 만들어보았어용");
+      return "👽HELLO!";
+    };
+
+    let copysayHi = sayHi;
+    alert(copysayHi + "→ 카피된 함수표현식 코드 출력");
+    alert(copysayHi() + "→ 카피된 함수표현식 함수 출력");
+  </script>
+</body>

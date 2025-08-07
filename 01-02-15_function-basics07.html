@@ -1,8 +1,14 @@
-<!-- pow(x,n) 함수 만들기 -->
-
+<!-- min(a, b) 함수 만들기 -->
 <head></head>
 <body>
   <script>
-    let getUserPow = prompt("숫자입력");
+    let first = prompt("첫번째 값 입력하세요");
+    let second = prompt("두번째 값 입력하세요");
+
+    function checkMin(a, b) {
+      return a > b ? b : a;
+    }
+
+    alert(checkMin(first, second));
   </script>
 </body>

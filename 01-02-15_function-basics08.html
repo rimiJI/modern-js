@@ -1,0 +1,39 @@
+<!-- pow(x,n) 함수 만들기 -->
+<head></head>
+<body>
+  <script>
+    let base = Number(prompt("제곱근(Base)을 입력하세요"));
+    let exp = Number(prompt("지수(exponent)을 입력하세요"));
+
+    // if문으로 x가 0이면 >> 자연수를 입력하라
+    // else>>for문이나 while문으로 반복>> count값 i 가  n이하일 경우에 계속 반복
+    //🎈여기서 만약 return값이 없으면 undefined가 뜬다.
+    function calcPow(x, n) {
+      let rst=1;
+      while (x == 0 || !Number.isInteger(x)) {
+        x = Number(prompt("자연수를 입력하세욧!!😠"));
+      }
+      for (i = 0; i < n; i++) {
+        rst *= x;
+      }
+      alert (rst+ " → 사용자정의 함수의 결과값입니다. ")
+      return rst;
+    }
+    console.log(calcPow(base, exp) + " → 사용자정의 함수의 결과값입니다. ");
+    console.log(i + " → 현재와 같이 함수내 변수를 초기값 미선언시 전역변수로 인식이 된다. 😎항상 for (let i = 0; i < n; i++) 해주셈" )
+
+
+
+    // 🎈물론 Math.pow()함수 사용도 가능
+    let rst2 = Math.pow(base, exp);
+    console.log(rst2 + " → Math.pow()함수의 결과값입니다. ");
+
+    // 🎈물론 연산자 이용도 가능
+    function calcPow2(x, n) {
+      return x ** n;
+    }
+    console.log(
+      calcPow2(base, exp) + " → 사용자정의 연산자 함수의 결과값입니다. "
+    );
+  </script>
+</body>
