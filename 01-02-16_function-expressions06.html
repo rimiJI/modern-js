@@ -2,6 +2,28 @@
 <head></head>
 <body>
   <script>
-    let ask = () =>
+    //변경할 예시 : 일반 함수 
+    //호이스팅됨(코드위로끌어올려짐) 선언 전 호출 가능 
+    // function ask(question, yes, no) {
+    //   if (confirm(question)) yes();
+    //   else no();
+    // }
+
+    // ask(
+    //   "동의? (일반함수선언)",
+    //   function () {
+    //     alert("보감");
+    //   },
+    //   function () {
+    //     alert("취소누름");
+    //   }
+    // );
+
+
+    // 변경된 예시 : 화살표 함수
+    //호이스팅안됨(코드위로끌어올려짐) 선언 이후에만 호출 가능
+    let ask = (question, yes, no) => (confirm(question) ? yes() : no());
+    ask("동의? (화살표함수)",()=>alert("보감"),()=>alert("취소누름"));
+    
   </script>
 </body>
