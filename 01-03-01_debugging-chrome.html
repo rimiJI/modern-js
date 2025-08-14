@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--코드/변수명 중심 페이지=en ,본문이 한국어 위주=ko -->
+  <!-- lang="ko" → 한국어가 주언어, 영어는 보조
+        lang="en" → 영어가 주언어, 한국어는 외국어로 취급
+        테스트 페이지라면 아무거나 가능하지만, 본문 언어 기준으로 맞추는 게 검색·번역·접근성 면에서 좋음         -->
+
+<!-- ✖️스크립트 실행 중단경우❌
+    1. 중단점 만났을 때
+    2. debugger문 만났을 때 
+    3. 에러 발생 -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <!--→ 한글 깨짐 방지-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--→ 모바일 화면 대응-->
+    <title>Document</title>
+    <!--→ 탭·북마크에서 제목 표시-->
+  </head>
+  <body>
+    <script>
+      function hello(name) {
+        let phrase = `Hello,${name}!!!`;
+
+        debugger; // <--여기서 실행이 멈춥니다. 
+
+        say(phrase);
+      }
+
+      function say(phrase) {
+        alert(`** ${phrase} **`);
+      }
+    </script>
+  </body>
+</html>

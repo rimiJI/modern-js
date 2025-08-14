@@ -23,13 +23,13 @@ if와 '?'를 사용한 조건 처리<br>
 🧶nullish 병합 연산자 '??'<br>
 while과 for 반복문<br>
 🧶switch문<br>
-🏃‍➡️함수<br>
+함수<br>
 함수 표현식<br>
 화살표 함수 기본<br>
 🧶기본 문법 요약<br>
 
 ### 코드 품질
-Chrome으로 디버깅하기<br>
+🏃Chrome으로 디버깅하기<br>
 🧶코딩 스타일<br>
 🧶주석<br>
 🧶닌자 코드<br>
