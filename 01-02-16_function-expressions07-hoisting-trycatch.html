@@ -1,0 +1,32 @@
+<!-- 함수선언문 VS 함수표현식 VS 화살표함수 -->
+ <!-- 함수선언은 잘못 재할당되는 경우를 방지하기위해 let보다 const를 선호 -->
+  <!-- function 선언문은 전역/스코프 상단에 자동 배치되므로, 예측 가능한 순서가 필요할 때는 const 화살표 함수가 유리. -->
+<head>
+</head>
+<body>
+    <script>
+        //함수선언문
+        fDeclararion();
+        function fDeclararion(){
+            console.log("Hello from Declaration");
+        }
+
+        //함수표현식
+        try{fExpression();}
+        catch (e){console.log("fExpression에러 : ",e.message);} 
+        const fExpression = 
+        function() {
+            console.log("Hello from Expression");
+        }
+
+
+        //화살표함수
+        try{fArrow()}
+        catch (e) {console.log("fArrow에러 : ",e.message);}
+        const fArrow = () => {
+            console.log("Hello from Arrow");
+        }
+
+    </script>
+</body>
+</html>
