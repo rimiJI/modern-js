@@ -24,6 +24,9 @@
     //호이스팅안됨(코드위로끌어올려짐) 선언 이후에만 호출 가능
     let ask = (question, yes, no) => (confirm(question) ? yes() : no());
     ask("동의? (화살표함수)",()=>alert("보감"),()=>alert("취소누름"));
-    
+
+    // 또는
+    let askask = (question) => (confirm(question) ?alert("보감2") : alert("취소누름2"));
+    askask("동의? (화살표함수2)")
   </script>
 </body>
