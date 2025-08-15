@@ -73,3 +73,13 @@ let bag = {
 console.log(bag);
 bag[fruit] = 10;
 console.log(bag);
+
+//단축 프로퍼티 키값이 동일한 경우 
+// name: name이걸 name이렇게만 써줘도됨
+const makerUser = (name,age) => {
+  return {
+    name, //name:name과 같음
+    age,//age:age와 같음
+  }
+}
+
