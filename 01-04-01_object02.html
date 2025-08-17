@@ -3,11 +3,15 @@
 <body>
   <script>
     // 4.1 객체
+    //JS의 객체는 다른언어와 달리, 존재하지 않는 프로퍼지에 접근하면 '에러'가 아닌 'undefined'반환
+    let us = {};
+    alert(us.noSuchProperty === undefined);
 
     //in연산자로 프로퍼티 존재여부 확인
     let user = { name: "John", age: 30 };
-
     alert("age" in user); // user.age가 존재하므로 true가 출력됩니다.
     alert("blabla" in user); // user.blabla는 존재하지 않기 때문에 false가 출력됩니다.
+
+
   </script>
 </body>
