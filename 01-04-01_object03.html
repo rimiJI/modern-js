@@ -1,7 +1,10 @@
 <!-- 과제 -->
-<head></head>
+<head>
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
 <body>
   <p id="out">안녕</p>
+  <p id="out2">안녕</p>
 
   <script>
     //객체야 안녕?
@@ -40,6 +43,42 @@
     console.log('isEmpty인가요? ',isEmpty(schedule));
     console.log(schedule);
 
+    //변하지 않는 객체? 
+    //답: const 로 선언해도 값은 바꿀 수 있음 (전에 따로 찾아서 공부함)
+    //이유: 새로 통으로 할당하는 것만 제외하고, 값은 얼마든지 변경 가능한 구조
+    const user3 ={
+        name: "happy"
+    }
+    user3.name = "mia"
+    console.log(user3)
  
+    //프로퍼티 합계 구하기
+    let salaries = {
+        Jhon : 100,
+        Ann: 160,
+        Pete: 130,
+    }
+
+    let sum=0
+    for (keyi in salaries){
+        sum+= salaries[keyi]
+    }
+    console.log(sum);
+    $('#out2').html(sum);
+
+    //지금과 같이 for문 안에 keyi변수를 변수선언 let안해주면 전역변수가 된다.
+    for (ikey in salaries){
+        ikey
+    }
+    console.log('전역변수된',ikey);
+
+    for (let iikey in salaries){
+        iikey
+    }
+    // console.log('지역변수가 된',iikey);
+    try{console.log('지역변수가 된', iikey);}
+    catch(e){ console.log('지역변수라 for 밖에선 접근불가',e.message);}
+
+
   </script>
 </body>
