@@ -1,0 +1,64 @@
+<!-- 메서드와 this -->
+<head></head>
+<body>
+  <script>
+    //🍎 메서드와 this
+    let user = {
+      name: "John",
+      age: 30,
+      Hi() {console.log(this.name); }, //this는 현재객체란뜻.
+      sayHi() {console.log(user.name); }, //외부변수 참조해 객체 접근하는 것도 가능
+    };
+    user.Hi();
+    user.sayHi();
+
+    //외부변수 참조해 객체접근하면 에러
+    let user2 = {
+      name: "John",
+      age: 30,
+
+      Hi2() { alert(user2.name); // Error: Cannot read property 'name' of null.여기에 이름표찢어서 없는데, 엉뚱하게 불러오고있다. 
+      },
+    };
+
+    let admin = user2;
+    console.log(user2);
+    console.log(admin);
+
+    user2 = null; // user2를 null로 덮어씁니다. 이름표 찢어버렸다고 치면
+
+    // admin.Hi2(); // Hi2()가 엉뚱한 객체를 참고하면서 에러가 발생했습니다.
+    console.log(user2); //null인 상태
+    console.log(admin); //이건 안찢어버림
+
+    // 🍎자유로운 this
+    //만든 함수를 2개의 다른 객체에 넣었을 경우. 
+    //그 만든 함수 안 this는 2개의 각각 다른 객체의 값을 참조한다.
+    let a = { name: "오잉이" };
+    let b = { name: "또잉이" };
+    function conname(){alert(this.name);}
+
+    a.ff = conname;
+    b.ff = conname;
+
+    b['ff'](); //얘랑 - 동적일때
+    b.ff(); //얘랑 같은 말 - 정적일때
+
+    console.log('a함수내용',a);
+    console.log('b함수내용',b);
+
+    //this를 사용한 함수. 객체가 없어도 호출할 수 있을까?? ,YES
+    function tthiss(){
+        console.log('함수안this',this);
+    }
+    console.log('함수밖this',tthiss());
+     tthiss();
+
+
+
+
+
+
+
+  </script>
+</body>
