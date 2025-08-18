@@ -1,6 +1,6 @@
-<!-- 과제 -->
+<!-- 객체 과제 -->
 <head>
-     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
   <p id="out">안녕</p>
@@ -30,55 +30,60 @@
     output.innerHTML += "<br>" + JSON.stringify(user);
 
     //객체가 비어있는지 확인하는 함수 만들기
-    let schedule={};
+    let schedule = {};
 
     function isEmpty(obj) {
-        for (i in obj){
-            return false;
-        }
-        return true;
+      for (i in obj) {
+        return false;
+      }
+      return true;
     }
-    console.log('isEmpty인가요? ',isEmpty(schedule));
-    schedule['8시']="get up!"
-    console.log('isEmpty인가요? ',isEmpty(schedule));
+    console.log("isEmpty인가요? ", isEmpty(schedule));
+    schedule["8시"] = "get up!";
+    console.log("isEmpty인가요? ", isEmpty(schedule));
     console.log(schedule);
 
-    //변하지 않는 객체? 
+    //변하지 않는 객체?
     //답: const 로 선언해도 값은 바꿀 수 있음 (전에 따로 찾아서 공부함)
     //이유: 새로 통으로 할당하는 것만 제외하고, 값은 얼마든지 변경 가능한 구조
-    const user3 ={
-        name: "happy"
-    }
-    user3.name = "mia"
-    console.log(user3)
- 
+    const user3 = {
+      name: "happy",
+    };
+    user3.name = "mia";
+    console.log(user3);
+
     //프로퍼티 합계 구하기
     let salaries = {
-        Jhon : 100,
-        Ann: 160,
-        Pete: 130,
-    }
+      Jhon: 100,
+      Ann: 160,
+      Pete: 130,
+    };
 
-    let sum=0
-    for (keyi in salaries){
-        sum+= salaries[keyi]
+    let sum = 0;
+    for (keyi in salaries) {
+      sum += salaries[keyi];
     }
     console.log(sum);
-    $('#out2').html(sum);
+    $("#out2").html(sum);
 
     //지금과 같이 for문 안에 keyi변수를 변수선언 let안해주면 전역변수가 된다.
-    for (ikey in salaries){
-        ikey
+    // 전역변수 = Global Variable
+    // 지역변수 = Local Variable
+    for (ikey in salaries) {
+      ikey;
     }
-    console.log('전역변수된',ikey);
+    console.log("전역변수된", ikey);
 
-    for (let iikey in salaries){
-        iikey
+    for (let iikey in salaries) {
+      iikey;
     }
     // console.log('지역변수가 된',iikey);
-    try{console.log('지역변수가 된', iikey);}
-    catch(e){ console.log('지역변수라 for 밖에선 접근불가',e.message);}
+    try {
+      console.log("지역변수가 된", iikey);
+    } catch (e) {
+      console.log("지역변수라 for 밖에선 접근불가", e.message);
+    }
 
-
+    
   </script>
 </body>

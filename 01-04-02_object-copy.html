@@ -1,0 +1,48 @@
+<head></head>
+<body>
+  <script>
+    //참조에 의한 복사
+    let a = {};
+    let b = a;
+    console.log(a == b);
+    console.log(a === b);
+
+    //똑같으면서 참조는 다르게 독립된 객체로 복사 (잘 없는 경우)
+    //복사방법1) 빈 객체clone에 user 프로퍼티 모두 복사
+    let clone = {};
+    let user = {
+      name: "John",
+      age: 30,
+    };
+    for (let i in user) {
+      clone[i] = user[i];
+    }
+    console.log('이제 clone은 완전히 독립적인 복제본이 되었습니다.');
+    clone.name="Peter";
+    console.log(clone);
+    console.log(user.name);
+    console.log(clone.name);
+
+    //assign 메서드로 여러 객체 하나로 병합
+    let user2 = { name:'John' , age:80}
+    let permissions1={canView:true};
+    let permissions2={canEdit:true};
+
+    //permissions1과 permissions2의 프로퍼티를 user로 복사합니다. 
+    Object.assign(user2, permissions1,permissions2);
+    console.log(user2);
+
+    //목표 객체(user2)에 동일한 이름을 가진  프로퍼티가 있는 경우엔 기존 값이 덮어씌워진다. 
+    Object.assign(user2,{name:'햅삐'},{age:5})
+    console.log(user2);
+
+    //복사방법2) Object.assign 사용
+    //참조,레퍼런스 값이 같은게 아니기에 동등==일치===연산자 false 출력
+    let clone2 = Object.assign({},user2);
+    console.log(user2==clone2);
+    console.log(user2===clone2);
+
+
+
+  </script>
+</body>
