@@ -1,0 +1,45 @@
+<!-- 과제 -->
+<head></head>
+<body>
+  <p id="out">안녕</p>
+
+  <script>
+    //객체야 안녕?
+    let output = document.querySelector("#out");
+    let user = {};
+    console.log(user);
+    output.innerHTML += "<br>" + JSON.stringify(user);
+
+    user.name = "John";
+    console.log(user);
+    output.innerHTML += "<br>" + JSON.stringify(user);
+
+    user.subname = "Smith";
+    console.log(user);
+    output.innerHTML += "<br>" + JSON.stringify(user);
+
+    user.name = "Pete";
+    console.log(user);
+    output.innerHTML += "<br>" + JSON.stringify(user);
+
+    delete user.name;
+    console.log(user);
+    output.innerHTML += "<br>" + JSON.stringify(user);
+
+    //객체가 비어있는지 확인하는 함수 만들기
+    let schedule={};
+
+    function isEmpty(obj) {
+        for (i in obj){
+            return false;
+        }
+        return true;
+    }
+    console.log('isEmpty인가요? ',isEmpty(schedule));
+    schedule['8시']="get up!"
+    console.log('isEmpty인가요? ',isEmpty(schedule));
+    console.log(schedule);
+
+ 
+  </script>
+</body>
