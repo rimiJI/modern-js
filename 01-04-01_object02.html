@@ -5,13 +5,56 @@
     // 4.1 객체
     //JS의 객체는 다른언어와 달리, 존재하지 않는 프로퍼지에 접근하면 '에러'가 아닌 'undefined'반환
     let us = {};
-    alert(us.noSuchProperty === undefined);
+    console.log("is undefined? : ", us.noSuchProperty === undefined);
 
-    //in연산자로 프로퍼티 존재여부 확인
+    //⭐in연산자로 프로퍼티 존재여부 확인
     let user = { name: "John", age: 30 };
-    alert("age" in user); // user.age가 존재하므로 true가 출력됩니다.
-    alert("blabla" in user); // user.blabla는 존재하지 않기 때문에 false가 출력됩니다.
+    console.log("age" in user); // user.age가 존재하므로 true가 출력됩니다.
+    console.log("blabla" in user); // user.blabla는 존재하지 않기 때문에 false가 출력됩니다.
 
+    //in 왼쪽엔 반드시 따옴표로 감싼 키
+    console.log("key in user : ", "key" in user);
 
+    //undefined: undefined는 변수는 정의되어 있으나 값이 할당되지 않은 경우에 쓰기 때문에 프로퍼티 값이 undefined인 경우는 흔치 않습니다.
+    //null:  값을 ‘알 수 없거나(unknown)’ 값이 ‘비어 있다는(empty)’ 것을 나타낼 때는 주로 null을 사용
+
+    //⭐for in 반복문
+    //for(;;)반복문과는 완전 다름
+    let user2 = {
+      name: "John",
+      age: 30,
+      isAdmin: true,
+    };
+
+    for (let key in user2) {
+      console.log("키: ", key);
+      console.log("값: ", user2[key]);
+    }
+
+    //객체 프로퍼티 순서는 정수=>자동정렬, 그외=>순서대로
+    let codes = {
+      49: "독일",
+      41: "스위스",
+      44: "영국",
+      // ..,
+      1: "미국",
+    };
+
+    for (let i in codes) {
+      console.log(i," ",codes[i]);
+    }
+
+    //객체 프로퍼티 정수=>자동정렬을 막기위한 훼이크
+    let codes2 = {
+      "+49": "독일",
+      "+41": "스위스",
+      "+44": "영국",
+      // ..,
+      "+1": "미국",
+    };
+
+    for (let i in codes2) {
+      console.log(i," ",codes2[i]);
+    }
   </script>
 </body>
