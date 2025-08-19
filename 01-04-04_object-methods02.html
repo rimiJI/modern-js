@@ -54,11 +54,15 @@
     console.log('함수밖this',tthiss());
      tthiss();
 
-
-
-
-
-
-
+    //🍎this가 없는 화살표 함수
+    //화살표함수는 '고유한' 자신의 this를 가지지 않는다. 
+    //만약 화살표함수에서 this를 쓰면 그 this는 평범한 외부 함수의 this를 참조하게 된다. 
+    //
+    let user3={firstName:'보라',
+               HiHi(){let arrow=()=>alert('표현식함수속 선언신함수속 화살표함수의 this는 어떤 이름을 가져올까?\n'+'표현식함수 ▶'+this.firstName);
+              arrow();
+              } 
+            };
+  user3.HiHi(); // 보라
   </script>
 </body>
