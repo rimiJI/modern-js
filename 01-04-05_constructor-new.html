@@ -1,0 +1,67 @@
+<!-- new 연산자와 생성자 함수 -->
+<head>
+  <style>
+    .answer {
+      color: rgb(0, 192, 192);
+      font-weight: normal;
+      padding-left: 1em;
+    }
+  </style>
+</head>
+<body>
+  <details>
+    <summary>'객체 리터럴'이란?</summary>
+    <p class="answer">
+      객체 안에 값을 직접 써놓는 표현식<br />숫자리터럴 10, 문자리터럴 "hello",
+      배열리터럴[1,2,3], 그리고 객체리터럴 name:"철수"
+    </p>
+  </details>
+  <details>
+    <summary>
+      객체 리터럴 쓰다보면 유사한 객체를 여러개 만들어야 할 때가 생기곤 한다.
+      그걸 뭐라고 하는가?
+      <em
+        >e.g. 복수의 사용자, 메뉴 내 다양한 아이템 객체로 표현하고 싶은 경우</em
+      >
+    </summary>
+    <p class="answer">
+      new 연산자 + 생성자함수<br />e.g. let user2= new User("보라")
+    </p>
+  </details>
+  <details>
+    <summary>
+      관용적으로 생성자함수는 두가지 관례를 따른다. (일반함수와 구분하기 위해)
+      1.함수이름첫글자___로 / 2.반드시 ___연산자붙여서 실행
+    </summary>
+    <p class="answer">1.함수 첫글자는 대문자로<br />2.반드시 new를 붙인다.</p>
+  </details>
+  <details>
+    <summary>잠깐! 모든 함수는 생성자 함수가 될 수 있을까요??</summary>
+    <p class="answer">
+      YES.<br />new를 붙여 실행한다면 어떤 함수라도 생성자함수 알고리즘이 실행된다.
+      <span style="color: red"> 공동의 약속 잊지 말기</span>
+    </p>
+  </details>
+
+  <script>
+    // new User()를 써서 생성자함수로 새 함수를 실행하면
+    // 다음과 같은 일이 자동으로 생긴다.
+    function User(name) {
+      //this={};  ⚙️(빈 객체를 암시적으로 슝 자동으로 만들어주고)
+
+      //새 프로퍼티 추가
+      this.name = name;
+      this.isAdmin = false;
+
+      //return this; ⚙️(this가 암시적으로 슝 자동으로 반환된다.)
+    }
+
+    let user1 = new User("보라");
+    let user2 = new User("호진");
+    let user3 = new User("지민");
+    console.log(user1);
+    console.log(user1.name);
+    console.log(user2.name);
+    console.log(user3.name);
+  </script>
+</body>
