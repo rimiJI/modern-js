@@ -1,0 +1,23 @@
+<!-- 과제 -->
+<head></head>
+<body>
+  <script>
+    //계산기 만들기
+    let calculator = {
+      read() {
+        this.a = prompt("첫번째 값", 0);
+        this.b = prompt("두번째 값", 0);
+      },
+      sum() {
+        return this.a + this.b;
+      },
+      mul() {
+        return this.a * this.b;
+      },
+    };
+
+    calculator.read();
+    alert(calculator.sum());
+    alert(calculator.mul());
+  </script>
+</body>
