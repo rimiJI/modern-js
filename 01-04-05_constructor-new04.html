@@ -1,0 +1,16 @@
+<!-- 생성자 함수 내_ 메서드 → 엄청난 유연성 확보 가능  -->
+<head></head>
+<body>
+  <script>
+    function User(name){
+      this.name=name;
+      //생성자함수내 메서드
+      this.Hi=function(){
+        alert("제이름은 "+this.name+" 입니다.");
+      };
+    }
+
+    let bory = new User("보리쒸");
+    bory.Hi();
+  </script>
+</body>
