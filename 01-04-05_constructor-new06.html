@@ -1,0 +1,47 @@
+<!-- 과제2 -누산기 만들기 -->
+<head><link rel="icon" href="favicon.ico" type="image/x-icon"></head>
+
+<body>
+  <div style="margin: 20px">
+    <div class="바뀔녀석">바껴랏!</div>
+    <div class="바뀔녀석">바껴랏2!</div>
+  </div>
+
+  <script>
+    function Accumulator(a) {
+      //a는 시작값, 나중엔 startingValue같이 직관적인 매개변수이름으로 짓기
+      this.value = a;
+      this.read = function () {
+        this.value += +prompt("더할 값은? ", 0);
+      };
+    }
+    //데모코드
+    let accumulator = new Accumulator(1); // 최초값: 1
+
+    accumulator.read(); // 사용자가 입력한 값을 더해줌
+    accumulator.read(); // 사용자가 입력한 값을 더해줌
+
+    console.log(accumulator.value); // 최초값과 사용자가 입력한 모든 값을 더해 출력함
+    //___________________________________________________________________
+    // 틀린거 이유:
+    // 마지막에 value에 더해줘야하는데 그냥 a에 더해주니깐 value는 그대로 계속 0이고 undefined가 뜸
+    /*
+    let value = 0;
+    function Accumulator(a) {
+      this.a = a
+      this.read = function () {
+        //+는 Number()와 같은말이다. 숫자로 변환해줌
+        this.a += +prompt("더할 숫자를 입력하세욧", 0); 
+      };
+    }
+
+    //데모코드
+    let accumulator = new Accumulator(1); // 최초값: 1
+
+    accumulator.read(); // 사용자가 입력한 값을 더해줌
+    accumulator.read(); // 사용자가 입력한 값을 더해줌
+
+    alert(accumulator.value); // 최초값과 사용자가 입력한 모든 값을 더해 출력함
+*/
+  </script>
+</body>

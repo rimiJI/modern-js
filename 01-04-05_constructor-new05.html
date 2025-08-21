@@ -1,0 +1,39 @@
+<!-- 과제1 -함수 두 개로 동일한 객체 만들기 -->
+<head>
+  <script
+    src="https://code.jquery.com/jquery-3.7.1.slim.js"
+    integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc="
+    crossorigin="anonymous"
+  ></script>
+</head>
+<body>
+  <div style="margin: 20px">
+    <details>
+      <summary>함수 두개로 동일한 객체 만드는 게 가능할까??</summary>
+      <p style="color: rgb(0, 163, 163)">
+        YES.<br />다른 두개의 함수안에 return값을 동일한 변수객체를 넣어주면
+        가능!<br />
+      </p>
+    </details>
+
+    <div class="바뀔녀석">바껴랏!</div>
+    <div class="바뀔녀석">바껴랏2!</div>
+  </div>
+
+  <script>
+    // 함수 두개로 동일한 객체 만드는 게 가능할까?? YES
+    let obj = {};
+    function A() {
+      return obj;
+    }
+    function B() {
+      return obj;
+    }
+    console.log(new A() === new B());
+
+    document.querySelectorAll(".바뀔녀석")[0].innerHTML = ("바뀌었네 결과1▶ "+(new A() === new B()));
+    document.querySelectorAll(".바뀔녀석")[1].innerHTML = ("바뀌었네 결과2▶ "+(new A() === new B()));
+
+    // $(".바뀔녀석").eq(1).html(new A() === new B()); //.HTML이 아니라 .html임!!!!!!//eq(1)는 두번째를 의미함
+  </script>
+</body>
