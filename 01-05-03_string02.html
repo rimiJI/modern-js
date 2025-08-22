@@ -1,12 +1,62 @@
 <!-- 문자열 숙제 -->
 <html></html>
 <body>
-<!-- 함수생성 new생성자 VS 일반함수만들기랑 헷갈리.......return값 -->
+  <div class="text" style="margin: 40px">
+    <p>텍스트</p>
+    <p>텍스트</p>
+    <p>텍스트</p>
+    <p>텍스트</p>
+    <p>텍스트</p>
+    <p>텍스트</p>
+  </div>
+
+  <!-- 함수생성 new생성자 VS 일반함수만들기랑 헷갈리.......return값 -->
   <script>
-    // 첫글자를 대문자로 변경하는 함수 만들기
+    // 🍎첫글자를 대문자로 변경하는 함수 만들기
     function ucFirst(char) {
-      return char = char[0].toUpperCase() + char.slice(1);
+      return (char = char[0].toUpperCase() + char.slice(1));
     }
     console.log(ucFirst("john"));
+
+    //🍎스팸문자 걸러내기
+    function checkSpam(str) {
+      let lowerStr = str.toLowerCase();
+      return lowerStr.includes("viagra") || lowerStr.includes("xxx");
+    }
+    console.log(checkSpam("buy ViAgRA now"));
+    console.log(checkSpam("free xxxxx"));
+    console.log(checkSpam("innocent rabbit"));
+
+    //🍎문자열 줄이기
+    //str길이 확인 -> 최대길이 maxlength 초과경우 ->str끝을 "...."로 바꾸기
+    //함수명은 truncate(str,maxlength)
+    //바뀐 문자열의 길이는 maxlength
+    function truncate(str, maxlength) {
+      if (str.length > maxlength) {
+        return (str = str.slice(0, maxlength - 4) + "....");
+      } else {
+        return str
+      }
+    }
+
+    console.log( truncate("What I'd like to tell on this topic is:",  20));
+    console.log( truncate("Hi everyone!", 20));
+
+    //아래는 그냥 본문바꾸기 해봤음
+    const paragraphs = document.querySelectorAll(".text p");
+    paragraphs[0].innerHTML = truncate(
+      "What I'd like to tell on this topic is:",  20
+    );
+    paragraphs[1].innerHTML = "What I'd like to".length;
+    paragraphs[2].innerHTML = truncate("Hi everyone!", 20);
+
+
+    //🍎숫자만 추출하기
+    function extractCurrencyValue(Dollar){
+        return +(Dollar.slice(1)); //문자를 숫자로 바꾸려면 +() 또는 Number()
+    }
+    console.log(extractCurrencyValue('$120'))
+    console.log(Number.isInteger(extractCurrencyValue('$120')));
+    
   </script>
 </body>
