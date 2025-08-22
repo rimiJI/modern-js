@@ -1,6 +1,74 @@
-<html></html>
+<html>
+  <style>
+    .lines {
+      margin: 40;
+    }
+    details {
+      padding-bottom: 1em;
+    }
+    details p {
+        color: rgb(0, 160, 160);
+    }
+  </style>
+</html>
 <body>
-    <script>
-        
-    </script>
+  <div class="lines">
+    <details>
+      <summary>글자에 접근하는 인덱싱 [ ] VS .charAt( )<br>둘의 넘치는 인덱스 접근 시 차이</summary>
+      <p>str[1000] → undefined 뜸 <br>str.charAt(1000) → ''빈문자열 출력</p>
+    </details>
+    <details>
+      <summary></summary>
+      <p></p>
+    </details>
+    <details>
+      <summary></summary>
+      <p></p>
+    </details>
+    <details>
+      <summary></summary>
+      <p></p>
+    </details>
+    <details>
+      <summary></summary>
+      <p></p>
+    </details>
+  </div>
+
+  <script>
+    //강력한 백틱 ``
+    // ""나''나 기본적인 문자열 표현에는 차이 없으나,
+    // ``은 표현식${}사용할 시나, 코드상 띄어쓰기 그대로 삽입하고 싶을때 사용하면 좋다.
+    function sum(a, b) {
+      return a + b;
+    }
+    console.log(`1+2=${sum(1, 2)}`);
+    let guestList = `손님: 
+     * John
+     & Pete
+     * Mary
+    `;
+    console.log(guestList);
+
+    //, 과 + 
+    // ,는 인수를 각각 독립적으로 추출하고 
+    // +는 인수를 합쳐버려서 문자열string으로 변형해버린다. 
+    console.log(1,`\n`,2);
+    console.log(1+`\n`+2);
+    console.log(1+2);
+    
+
+    //.length는 프로퍼티다 (함수가 아님)
+    console.log(`My🍎`,`My🍎`.length); //🍎는 글자 두개를 차지하는구나
+
+    //글자에 접근하는 인덱싱 []
+    //또는 .charAt()
+    let str =`Hello`;
+    console.log(str[0]);
+    console.log(str[1000]); //[]는 넘치는 인덱스넘버에 접근하면 undefined
+    console.log(str.charAt(0));
+    console.log(str.charAt(1000)===''); //.charAt()는 넘치는 인덱스넘버에 접근하면 ''(빈문자열)
+
+
+  </script>
 </body>
