@@ -24,7 +24,7 @@
     </details>
     <details>
       <summary>위의 것 선언방법 두가지</summary>
-      <p>let arr=new Array();<br />let arr=[]</p>
+      <p><span class="red">let arr=[ ]</span><br />let arr=new Array( );이건잘안씀</p>
     </details>
     <details>
       <summary>배열은 인덱스넘버가지고 수정 가능?</summary>
@@ -77,14 +77,33 @@
       <p>배열 빨리 만드는 방법: 문자열 → .split()<br>let arrr="사과 배 포도".split(" ");</p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>for반복문과 for..of반복문의 차이</summary>
+      <p>for문에 들어가는 매개변수인 i 의 값이 다르다. for반복문은 인덱스넘버, for..of는 요소자체<br>
+         for (let i=0; i&lt;arrr.length; i++) //여기서 i는 인덱스넘버
+         <br> for (let i of arrr) //여기서 i는 요소자체
+      </p>
+    </details>
+    <details>
+      <summary>length 프로퍼티의 또 다른 독특한 특징</summary>
+      <p>자르고,쓰고,비울수 있다.</p>
     </details>
     <details>
       <summary></summary>
       <p></p>
     </details>
-    <details>
+        <details>
+      <summary></summary>
+      <p></p>
+    </details>
+        <details>
+      <summary></summary>
+      <p></p>
+    </details>
+        <details>
+      <summary></summary>
+      <p></p>
+    </details>
+        <details>
       <summary></summary>
       <p></p>
     </details>
@@ -121,11 +140,31 @@
     let trailling = ["사과", "오렌지", "자두"];
 
 
-    //for 반복문을 써보자
+    //1. for 반복문을 써보자
     //배열빨리 만드는방법: 문자열 → .split()
     let arrr="사과 배 포도".split(" ");
     console.log(arrr); 
+    for (let i=0;i<arrr.length;i++){//let안해주면 전역변수되버림
+        console.log(arrr[i],i);
+    }
+    //2. for..of 반목문
+    for(let i of arrr){
+        console.log(i); //위는인덱스, 얘는 요소자체
+    }
 
+
+    //length 프로퍼티로 자르고,쓰고,비울수 있다.
+    //( length 프로퍼티의 또 다른 독특한 특징임 )
+    let arrL=[1,2,3,4,5]
+    //요소 두개만 남기고 자른단
+    arrL.length=2;
+    console.log(arrL); //[1, 2]
+    //회복이 될까?
+    arrL.length=5;
+    console.log(arrL); //[1, 2, empty × 3] 나머지값 사라지고 empty~  
+    //비워버령
+    arrL.length=0;
+    console.log(arrL); //[]
 
   </script>
   
