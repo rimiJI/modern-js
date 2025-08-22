@@ -9,6 +9,7 @@
     }
     details p {
       color: rgb(0, 160, 160);
+      padding-left: 1em;
     }
     .red {
       color: red;
@@ -64,16 +65,16 @@
       </p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>임의의 키를 사용해야 한다면 배열? 일반 객체 {:}?</summary>
+      <p>배열보단 일반 객체 {:}가 적합한 자료구조</p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>성능은 뭐가 빠를까요?? push,pop VS shift,unshift</summary>
+      <p><img src="img/토끼와거북이.jpg" alt="배열 성능 예시"></p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>배열 일일이 타자치기 귀찮다! 배열 빨리 만드는 방법은????</summary>
+      <p>배열 빨리 만드는 방법: 문자열 → .split()<br>let arrr="사과 배 포도".split(" ");</p>
     </details>
     <details>
       <summary></summary>
@@ -99,7 +100,7 @@
     fruits[4] = "복숭아"; // ['귤', '배', '포도', empty, '복숭아']
     console.log(fruits);
 
-    //length 프로퍼티 사용하면 몇개인지 알수있음
+    //length 프로퍼티 사용하면 몇개인지 알 수 있음
     console.log(fruits.length);
 
     //배열Array속 요소는 자료형의 제약이 없다.
@@ -118,6 +119,14 @@
     // (trailing이라고 함)
     //장점: 마지막 쉼표 사용하면 모든 줄의 생김새가 유사해서 요소 넣거나 빼기 쉬움
     let trailling = ["사과", "오렌지", "자두"];
+
+
+    //for 반복문을 써보자
+    //배열빨리 만드는방법: 문자열 → .split()
+    let arrr="사과 배 포도".split(" ");
+    console.log(arrr); 
+
+
   </script>
   
 </body>
