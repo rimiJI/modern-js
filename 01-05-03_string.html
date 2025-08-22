@@ -7,31 +7,58 @@
       padding-bottom: 1em;
     }
     details p {
-        color: rgb(0, 160, 160);
+      color: rgb(0, 160, 160);
+    }
+    .red {
+      color: red;
     }
   </style>
 </html>
 <body>
   <div class="lines">
     <details>
-      <summary>글자에 접근하는 인덱싱 [ ] VS .charAt( )<br>둘의 넘치는 인덱스 접근 시 차이</summary>
-      <p>str[1000] → undefined 뜸 <br>str.charAt(1000) → ''빈문자열 출력</p>
+      <summary>
+        글자에 접근하는 인덱싱 [ ] VS .charAt( )<br />둘의 넘치는 인덱스 접근 시
+        차이
+      </summary>
+      <p>str[1000] → undefined 뜸 <br />str.charAt(1000) → ''빈문자열 출력</p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>
+        인덱스 넘버로 글자 수정할 수 있을까?? <br />let str = 'Hi';
+        <br />str[0]="h";
+      </summary>
+      <p>
+        NO!!!!! <br />에러뜸 꼭 글자 수정하고 싶으면 새로운 문자열 만든담에
+        할당해줘야함<br />let str = 'Hi';<br />
+        str = 'h'+str[1];
+      </p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>
+        <span class="red">변수.length</span> 쓸때 이거일까? 아님
+        <span class="red">변수.length()</span> 이걸까~?
+      </summary>
+      <p>변수.length<br />왜냐묜 함수가 아닌 프로퍼티다</p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>문자열 출력할 때 , 과 + 의 차이를 설명하시오</summary>
+      <p>
+        ,는 인수를 각각 독립적으로 추출하고<br />
+        +는 인수를 합쳐버려서 문자열string으로 변형해버린다.
+      </p>
     </details>
     <details>
-      <summary></summary>
-      <p></p>
+      <summary>대소문자 변경하는 함수<br>대문자로 변경:<br>소문자로 변경:<br>맨앞만대문자:</summary>
+      <p>대문자로 변경: 변수.toUpperCase()<br>소문자로 변경: 변수.toLowerCase()<br>맨앞만대문자: 변수[0].toUpperCase()</p>
+    </details>
+    <details>
+      <summary>문자열 있는지 true , false 반환</summary>
+      <p>- "문자열".includes("찾고자하는문자")<br>- 첫번째 넘기고 두번째있는 지 찾고싶으면<br> 변수.includes("찾고자하는문자", 2) </p>
+    </details>
+    <details>
+      <summary>슬라이스로 부분문자 추출하고 싶으면?</summary>
+      <p>변수.slice(시작,끝:값-1까지)<br>str.slice(0,5) 인덱스번호 0부터 인덱스번호 5-1까지</p>
     </details>
   </div>
 
@@ -50,25 +77,32 @@
     `;
     console.log(guestList);
 
-    //, 과 + 
-    // ,는 인수를 각각 독립적으로 추출하고 
-    // +는 인수를 합쳐버려서 문자열string으로 변형해버린다. 
-    console.log(1,`\n`,2);
-    console.log(1+`\n`+2);
-    console.log(1+2);
-    
+    //, 과 +
+    // ,는 인수를 각각 독립적으로 추출하고
+    // +는 인수를 합쳐버려서 문자열string으로 변형해버린다.
+    console.log(1, `\n`, 2);
+    console.log(1 + `\n` + 2);
+    console.log(1 + 2);
 
     //.length는 프로퍼티다 (함수가 아님)
-    console.log(`My🍎`,`My🍎`.length); //🍎는 글자 두개를 차지하는구나
+    console.log(`My🍎`, `My🍎`.length); //🍎는 글자 두개를 차지하는구나
 
     //글자에 접근하는 인덱싱 []
     //또는 .charAt()
-    let str =`Hello`;
+    let str = `Hello`;
     console.log(str[0]);
     console.log(str[1000]); //[]는 넘치는 인덱스넘버에 접근하면 undefined
     console.log(str.charAt(0));
-    console.log(str.charAt(1000)===''); //.charAt()는 넘치는 인덱스넘버에 접근하면 ''(빈문자열)
+    console.log(str.charAt(1000) === ""); //.charAt()는 넘치는 인덱스넘버에 접근하면 ''(빈문자열)
 
+    //인덱스 넘버로 글자 수정할 수 없음
+    //eg.let str = 'Hi';
+    //  str[0]="h" 여기서 에러 발생
+    //대신
 
+    //글자 수정하고 싶으면 새로운 문자열 만든담에 할당해줘야함
+    let strr = "Hi";
+    strr = "h" + strr[1];
+    console.log(strr);
   </script>
 </body>
