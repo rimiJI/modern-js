@@ -1,0 +1,26 @@
+<!--함수-메서드 과제 1/13 ...진행중...  -->
+<head></head>
+<body>
+  <script>
+    //🍅 -들어간 문자 변경하기
+    function camelize(a) {
+      //split로 배열[]로 만든담에
+      //첫번째를 제외한 두번째순서부터 [1] 맨 앞글자를 대문자로 변경하는 맵함수()
+      //join으로 붙인 뒤 ,제거
+      return a //'list-style-image'
+        .split("-") //['list','style','image']
+        .map((a, b) => (b == 0 ? a : a[b].toUpperCase() + a.slice(1))) //['list','Style','Image']
+        .join(""); //listStyleImage
+    }
+    console.log(camelize("background-color"));
+    console.log(camelize("list-style-image"));
+    console.log(camelize("-webkit-transition"));
+
+    //🎁HINT
+    //let result = arr.map(function(item, index, array) {
+    //   // 요소 대신 새로운 값을 반환합니다.
+    // });
+
+    //
+  </script>
+</body>
