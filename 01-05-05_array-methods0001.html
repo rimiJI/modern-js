@@ -120,5 +120,20 @@
     let countries = ["Österreich", "Andorra", "Vietnam"];
     let countriesSort = countries.sort((a, b) => a.localeCompare(b));
     console.log(countriesSort); //['Andorra', 'Österreich', 'Vietnam']
+
+    //🍅arr.reverse()
+    //역순
+    len = [1, -2, 15, 2, 0, 8];
+    console.log(len.reverse()); //[8, 0, 2, 15, -2, 1]
+
+    //🍅join() (split과 반대)
+    //접착제
+    console.log(countries.join("-")); //Andorra-Österreich-Vietnam
+
+    //🍅Array.isArray(배열)
+    //배열Array인가요??
+    console.log(Array.isArray(len)); //true
+    console.log(Array.isArray([])); //true
+    console.log(Array.isArray({})); //false
   </script>
 </body>
