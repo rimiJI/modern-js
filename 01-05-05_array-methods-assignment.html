@@ -1,4 +1,4 @@
-<!--함수-메서드 과제 7/13 ...진행중...  -->
+<!--함수-메서드 과제 9/13 ...진행중...  -->
 <head></head>
 <body>
   <script>
@@ -142,5 +142,23 @@
       */
     console.log(usersMapped[0].id); // 1
     console.log(usersMapped[0].fullName); // John Smith
+
+    //🍎나이를 기준으로 객체 정렬
+    //sort이긴 한데 , 객체 프로퍼티에 접근하는 것을 생각해야함.
+    //오름차순 a-b, 내림차순 b-a
+    //지금은 오름차순
+    john = { name: "John", age: 25 };
+    pete = { name: "Pete", age: 30 };
+    mary = { name: "Mary", age: 28 };
+    arr = [pete, john, mary];
+
+    function sortByAge(age) {
+      arr.sort((a, b) => a.age - b.age);
+    }
+
+    sortByAge(arr);
+
+    // now: [john, mary, pete]
+    console.log(arr); // John
   </script>
 </body>
