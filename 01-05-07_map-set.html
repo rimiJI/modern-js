@@ -1,0 +1,73 @@
+<!-- map - set 맵과셋 -->
+<!-- Map은 객체를 키로 삼는걸 허용, 이런 {{}:~,{}:~,{}:~ } 모양이다. 
+ user1과 user2를 문자열로 바꾸지 않고, (문자열전환 객체키와 다르게 ) 
+ 객체 그 자체를 Key로 인식하기 때문에 원하는 대로 동작
+ (반면, 객체에서 객체를 키로 넣으면 { name: "John" }가  "[object Object]"로 변함) -->
+
+<head>
+  <title>맵 과 셋</title>
+</head>
+<body>
+  <script>
+    //🍊 {맵}
+    let user1 = { name: "John" };
+    let user2 = { name: "Pete" };
+
+    let visitsCount = new Map(); // 새로운 맵 {}
+    visitsCount.set(user1, 123); // user1 객체 '자체'를 Key로 사용
+    visitsCount.set(user2, 456); // user2 객체 '자체'를 Key로 사용
+
+    console.log(visitsCount.get(user1)); //123
+    console.log(visitsCount);
+
+    // [배열] -왜 맵을 사용하는지 설명하기 위하여
+    user1 = { name: "John" };
+    user2 = { name: "Pete" };
+
+    let visitsCountObj = []; //새로운 배열 []
+    visitsCountObj[user1] = 123;
+    visitsCountObj[user2] = 456;
+
+    console.log(visitsCountObj[0]); //undefined
+    console.log(visitsCountObj);
+
+    //🍊 셋 -중복X, 고유한 방문자 이름 기록같은 것
+    let set = new Set(); //셋 만들기
+    let john = { name: "John" };
+    let pete = { name: "Pete" };
+    let mary = { name: "Mary" };
+
+    // 위에 객체만든거 한꺼번에 만들기 (하지만,, 위와같이 단 세개의 객체를 만들때 아래처럼 안함)
+    // let names = ['John', 'Pete', 'Mary'];         //1. 기본 데이터(이름)를 명확한 변수
+    // let users = names.map(name => ({ name }));    //2. map을 사용해 이름 배열을 사용자 객체 배열로 변환
+    //<위에는 이거랑 같음> let users = names.map(name => ({ name:name }));
+    // let [john, pete, mary] = users;               //3. 구조 분해 할당을 사용해 각 객체를 개별 변수에 할당
+
+    // 어떤 고객(john, mary)은 여러 번 방문할 수 있습니다.
+    set.add(john);
+    set.add(pete);
+    set.add(mary);
+    console.log(set.size); // 3
+    set.add(john);
+    set.add(mary);
+
+    //셋에는 유일무이한 값만 저장
+    console.log(set.size); // 3
+
+    //셋의 값!!에 반복작업 가능! (for..of 로)
+    set = new Set(["orange", "apple", "banana"]);
+    // for..of로
+    for (item of set) {
+      console.log(item);
+    }
+
+    //forEach로
+    set.forEach((item, val, set) => {
+      console.log(item);
+    });
+
+    console.log(set.keys()); //셋 내의 모든 값을 포함하는 이터러블 객체를 반환
+    console.log(set.values()); //set.keys와 동일한 작업을 합니다. 맵과의 호환성을 위해 만들어진 메서드
+    console.log(set.entries()); // 이터러블 객체를 반환, 맵과의 호환성을 위해 만들어짐
+  </script>
+</body>
