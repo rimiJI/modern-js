@@ -42,24 +42,24 @@
     arr[2](); //인덱스2번 즉, 3번쨰 요소인 function(){alert(this);} 를 호출
 
     //🍎입력한 숫자의 합 구하기
-    // prompt 창을 띄워 사용자에게 숫자를 입력해 달라고 요청한 후, 입력받은 값들을 배열에 저장 
+    // prompt 창을 띄워 사용자에게 숫자를 입력해 달라고 요청한 후, 입력받은 값들을 배열에 저장
     // let arr = []
     // 합산값=0
     // arr += prumpt("값을 입력해주세요")
     // while(숫자면트루){ 어레이에 추가, arr가 빈값이거나 숫자아니면 멈춤}
     // for of로 값 돌려서 합산값에 더해줌
-    function sumInput(){
+    function sumInput() {
       let arr = [];
-      while(true){
-        let inputValue = prompt("숫자를 입력하시오",0);
+      while (true) {
+        let inputValue = prompt("숫자를 입력하시오", 0);
 
         //빈값이거나 숫자가 아니면 멈춤
-        if (inputValue ==''||inputValue==null|| isNaN(inputValue)) break;
-        arr.push(+inputValue); //모달창에 입력값은 string이라 +연산자를 붙여서 Number로 바꿔줘야함 
+        if (inputValue == "" || inputValue == null || isNaN(inputValue)) break;
+        arr.push(+inputValue); //모달창에 입력값은 string이라 +연산자를 붙여서 Number로 바꿔줘야함
       }
-      let sum=0;
-      for (let i of arr ){
-        sum+=i;
+      let sum = 0;
+      for (let i of arr) {
+        sum += i;
       }
       return sum;
     }
