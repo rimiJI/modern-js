@@ -1,4 +1,4 @@
-<!--함수-메서드 과제 9/13 ...진행중...  -->
+<!--함수-메서드 과제 10/13 ...진행중...  -->
 <head></head>
 <body>
   <script>
@@ -75,11 +75,11 @@
     arr.sort((a, b) => b - a);
     console.log(arr); // 8, 5, 2, 1, -10
     //🎁...hint sort( a,b=>b-a)
-    /* 
+    /*
     sort(a,b) 규칙
     ❗a: 비교할 첫 번째 요소
     ❗b: 비교할 두 번째 요소
-    우리의 역할은 그 약속에 맞춰 
+    우리의 역할은 그 약속에 맞춰
     두 요소를 비교하는 로직(a - b 또는 b - a)을 작성해 반환하는 것
 
     b - a는 어떻게 동작하나요?
@@ -119,7 +119,7 @@
     // ... .map(function(item, index, array)
     // ... .map(item => item.length);
 
-    //🍎🚧객체 매핑하기
+    //9🍎🚧객체 매핑하기
     //원하는바
     // {name:~ ,surname:~ ,id:~ };
     // {fullname:~ , id:~ }
@@ -143,7 +143,7 @@
     console.log(usersMapped[0].id); // 1
     console.log(usersMapped[0].fullName); // John Smith
 
-    //🍎나이를 기준으로 객체 정렬
+    //10🍎나이를 기준으로 객체 정렬
     //sort이긴 한데 , 객체 프로퍼티에 접근하는 것을 생각해야함.
     //오름차순 a-b, 내림차순 b-a
     //지금은 오름차순
@@ -157,8 +157,28 @@
     }
 
     sortByAge(arr);
+    // arr = [john, mary, pete] (크게보면 배열이지만 안에는 객체들이 쏙쏙 들어있는 형태
+    // 즉, 순서가 있는 객체의 묶음이라고 볼 수 있다. )
+    console.log(arr); // 나이순으로 정렬되어있는 것을 볼 수 있다.
 
-    // now: [john, mary, pete]
-    console.log(arr); // John
+    //11🍎무작위로 배열 섞는 함수 (어렵..네? 😊)
+
+    //12🍎평균나이 구하기
+    //배열을 기반으로 한가지 값을 도출할땐 reduce! (<>맵은 각각 함수 적용해서 값을 변환시키는 거지만.)
+    //reduce(func, initial) – 요소를 차례로 돌면서 func을 호출함. 반환값은 다음 함수 호출에 전달함. 최종적으로 하나의 값이 도출됨
+    //reduce 예제에선 누산기가 있었음
+    //
+    john = { name: "John", age: 25 };
+    pete = { name: "Pete", age: 30 };
+    mary = { name: "Mary", age: 29 };
+    arr = [john, pete, mary];
+
+    // 원본에서 값돌아가면서 값을 수집한다음, / 배열의길이(갯수)로 나누면됨
+    //새로울 값 = arr.reduce((sum, currunt)=>sum+currunt, 0)
+    // (여기서 0은 마지막인수인 하나남은 인덱스넘버))
+    function getAverageAge(user) {
+      return user.reduce((sum, c) => sum + c.age, 0) / user.length;
+    }
+    console.log(getAverageAge(arr)); // (25 + 30 + 29) / 3 = 28
   </script>
 </body>
