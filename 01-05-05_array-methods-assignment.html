@@ -180,5 +180,46 @@
       return user.reduce((sum, c) => sum + c.age, 0) / user.length;
     }
     console.log(getAverageAge(arr)); // (25 + 30 + 29) / 3 = 28
+
+    //13🍎중복 없는 요소 찾아내기
+    //일단 새 배열에 푸쉬하고, 하나씩 뽑아내며 push하고,
+    //만약 중독되는 값이 있으면 if의 조건에 해당되지 않으니까 push가 ❌
+    //output 배열을 '이미 입장한 손님 명단' 이라고 생각하면 아주 쉬워요
+    function unique(arr) {
+      /* your code */
+      let output = [];
+      for (let item of arr) {
+        if (!output.includes(item)) {
+          output.push(item);
+        }
+      }
+      return output; //함수가 끝날 때 그 결과물을 밖으로 전달해주는 '출구'
+    }
+
+    let strings = [
+      "Hare",
+      "Krishna",
+      "Hare",
+      "Krishna",
+      "Krishna",
+      "Krishna",
+      "Hare",
+      "Hare",
+      ":-O",
+    ];
+
+    console.log(unique(strings)); // Hare, Krishna, :-O
+
+    // ✨ 더 현대적이고 간결한 방법: Set
+    function uniqueWithSet(arr) {
+      // 1. 배열(arr)을 Set으로 만들어서 중복을 자동으로 제거
+      // 2. Set을 다시 배열로 변환하기 위해 스프레드 문법(...)을 사용
+      return [...new Set(arr)];
+      //[...new Set(arr)] 이 문법은 코드를 매우 간결하고 읽기 쉽게,배열의 중복을 제거할 때 가장 널리 사용되는 방법 중 하나
+      // Set(arr) ▶{ 'Hare', 'Krishna', ':-O' }
+      // ... (전개 구문, Spread Syntax) - 주머니 속 내용물 펼치기, 값 목록이 됨 ▶'Hare', 'Krishna', ':-O'
+      //[ ] ▶배열에 담기.[ 'Hare', 'Krishna', ':-O' ]
+    }
+    console.log("Set을 사용한 결과:", uniqueWithSet(strings)); // ["Hare", "Krishna", ":-O"]
   </script>
 </body>
