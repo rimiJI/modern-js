@@ -76,8 +76,8 @@ NO !
   </script>
 
   <script>
-    //Assignment
-    //1.
+    ///숙제 Assignment
+    //🍎1.프로퍼티 값 더하기
     //Object.values 와 for..of 반복문을 사용해 모든 급여의 합을 반환하는
     // 함수 sumSalaries(salaries)를 만들어보세요.
     // salaries가 빈 객체라면, 0이 반환되어야 합니다.
@@ -89,6 +89,7 @@ NO !
         //그리고 더하기
         sum += item;
       }
+      return sum;
     }
     let salaries = {
       John: 100,
@@ -97,5 +98,22 @@ NO !
     };
 
     console.log(sumSalaries(salaries)); // 650
+
+    //🍎2.프로퍼티 개수 세기
+    //키값을 배열로 뽑아낸다음에 그것의 길이를 추출
+    user = {
+      name: "John",
+      age: 30,
+    };
+
+    function count(a) {
+      return Object.keys(a).length;
+    }
+    // 위에꺼 단계별로 보여주자면
+    // Object.keys(user)
+    console.log(`배열로 만들기 ${Object.keys(user)}`);
+    // Object.keys(user).length
+    console.log(`배열길이 재기 ${Object.keys(user).length}`);
+    console.log(count(user)); // 2
   </script>
 </body>
