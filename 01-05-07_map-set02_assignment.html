@@ -1,15 +1,99 @@
-<!-- map - set 맵과셋 assignment -->
-<!-- Map은 객체를 키로 삼는걸 허용, 이런 {{}:~,{}:~,{}:~ } 모양이다. -->
+<!-- map - set 맵과셋 과제-->
+<!-- 배열에서 중복 요소 제거하기-->
 
 <head>
-  <title>맵 과 셋</title>
+  <style>
+    /* details 태그에 약간의 여백 */
+    details {
+      margin-bottom: 10px;
+    }
+  </style>
+  <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+  <title>🚩map-set assignment</title>
 </head>
 <body>
-  <script>
-    // 배열에서 중복 요소 제거하기
+  <h3 style="color: rgb(194, 194, 194)">🚩map-set assignment</h3>
+  <div>각 문법에 따른 코드를 빠르게 머릿속으로 구현하시오</div>
+  <div>
+    <details>
+      <summary>방법1.(Array.from: )</summary>
+      <pre><code class="language-javascript">
     function unique(arr) {
       /* 제출 답안 */
+      return Array.from(new Set(arr));
     }
+      </code></pre>
+      <p style="color: rgb(194, 194, 194)">
+        Array.from()은 정적메서드로 순회기능or유사배열 객체에서 얕게 복사된
+        새로운 Array 인스턴스를 생성합니다.
+      </p>
+    </details>
+    <details>
+      <summary>방법2.(for...of)</summary>
+      <pre><code class="language-javascript">
+    function uniqueLoop(arr) {
+      let result = []; // 결과를 담을 빈 배열
+
+      for (let str of arr) {
+        // 배열을 순회하면서
+        if (!result.includes(str)) {
+          // 결과 배열에 현재 요소가 없다면
+          result.push(str); // 추가한다
+        }
+      }
+      return result;
+    }
+      </code></pre>
+    </details>
+    <details>
+      <summary style="color: rgb(212, 0, 0)">방법3.(스프레드문법[...])</summary>
+      <pre><code class="language-javascript">
+    function uniqueSpread(arr) {
+      return [...new Set(arr)];
+    }
+      </code></pre>
+      <p style="color: rgb(194, 194, 194)">
+        스프레드문법은 짧고 세련된 최신문법임. ...로 펼치고, [ ]로 묶어주는 방법
+      </p>
+    </details>
+  </div>
+  <script>
+    // 🚩배열에서 중복 요소 제거하기 (1.Array.from)
+    function unique(arr) {
+      /* 제출 답안 */
+      return Array.from(new Set(arr));
+    }
+    //  Array.from(...):
+    // Array.from() 메서드는 Set처럼 배열은 아니지만 배열로 변환할 수 있는 객체(iterable 또는 array-like 객체)를 진짜 배열로 만들어주는 역할
+    // new Set(values)로 만들어진 Set 객체를 Array.from()에 전달하면, 중복이 제거된 값들만 들어있는 새로운 배열이 만들어짐
+
+    //----------------------------------------------------
+    //🚩또 다른 방식으로 한다면 (2.for...of)
+    function uniqueLoop(arr) {
+      let result = []; // 결과를 담을 빈 배열
+
+      for (let str of arr) {
+        // 배열을 순회하면서
+        if (!result.includes(str)) {
+          // 결과 배열에 현재 요소가 없다면
+          result.push(str); // 추가한다
+        }
+      }
+      return result;
+    }
+
+    //----------------------------------------------------
+    //🚩또 더 짧고 세련된 문법 (3.스프레드문법)
+    function uniqueSpread(arr) {
+      return [...new Set(arr)];
+    }
+    // new Set으로 중복 제거해서 셋으로 만든 것을
+    // ...연산자가 펼친뒤
+    // []괄호에 묶어서 새 배열로 만들어줌
 
     let values = [
       "Hare",
@@ -23,6 +107,11 @@
       ":-O",
     ];
 
-    alert(unique(values)); // 얼럿창엔 `Hare, Krishna, :-O`만 출력되어야 합니다.
+    console.log(`방법1.(Array.from: )${unique(values)}`);
+    console.log(`방법2.(for...of): ${uniqueLoop(values)}`);
+    console.log(`방법3.(스프레드문법[...]): ${uniqueSpread(values)}`);
   </script>
+  <!-- 2. Prism.js의 핵심 JS 파일과 언어 자동 로더 플러그인을 불러옵니다 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
