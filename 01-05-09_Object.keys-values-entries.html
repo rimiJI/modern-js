@@ -1,0 +1,101 @@
+<head>
+  <!-- 1. '프리텐다드' 웹 폰트를 불러옵니다. -->
+  <link
+    rel="stylesheet"
+    as="style"
+    crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+  />
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+  </style>
+  <title>객체.keys 객체.values 객체.entries</title>
+</head>
+
+<body>
+  <pre>
+    🌟 핵심 요약
+    keys → 이름표 모음
+    values → 값 모음
+    entries → 이름표+값 세트
+
+    👉 쉽게 말하면 문구점 장부 같아:
+    keys = 물건 이름만 적힌 종이
+    values = 가격만 적힌 종이
+    entries = 이름+가격이 같이 적힌 종이
+    </pre
+  >
+  <details>
+    <summary>
+      🍎일반 객체(Map,Set,Array)에서 키,값,전체 추출하여 <b>배열</b>에 넣는것
+      어떻게 씀?
+    </summary>
+    <pre>
+    Object.keys(obj) – 객체의 키만 담은 배열을 반환 
+    Object.values(obj) – 객체의 값만 담은 배열을 반환 
+    Object.entries(obj) – [키, 값] 쌍을 담은 배열을 반환 
+
+    <>맵에선 obj.keys( ) 이렇게 했었음
+    <>맵에선 obj.values( ) 이렇게 했었음
+    <>맵에선 obj.entries( ) 이렇게 했었음
+    </pre>
+  </details>
+  <details>
+    <summary>
+      객체에 .map .filter와 같은 배열 전용 메서드를 사용할 수 있을까요?
+    </summary>
+    <pre>
+NO ! 
+        그러나, Object.entries(객체) 랑 Object.fromEntries(객체) 와 같은 전용 메서드를 사용하여 사용 가능
+        메서드 사용할 수 있다. 
+    </pre>
+  </details>
+
+  <script>
+    //Object.keys (객체)
+    //객체 안에 있는 이름표(key)만 모아-배열로 보여줌
+    let user = { name: "Tom", age: 10 };
+    console.log(Object.keys(user)); // ["name", "age"]
+
+    //Object.values (객체)
+    //객체 안에 있는 값(values)만 모아-배열로 보여줌
+    console.log(Object.values(user)); //['Tom', 10]
+
+    //Object.entries (객체)
+    //객체쌍을 배열로묶어 배열로 보여줌
+    console.log(Object.entries(user)); // [ ["name", "Tom"], ["age", 10] ]
+  </script>
+
+  <script>
+    //Assignment
+    //1.
+    //Object.values 와 for..of 반복문을 사용해 모든 급여의 합을 반환하는
+    // 함수 sumSalaries(salaries)를 만들어보세요.
+    // salaries가 빈 객체라면, 0이 반환되어야 합니다.
+    function sumSalaries(arr) {
+      //합계변수선언
+      let sum = 0;
+      //객체의값을 하나씩 forof로 돌리기
+      for (item of Object.values(arr)) {
+        //그리고 더하기
+        sum += item;
+      }
+    }
+    let salaries = {
+      John: 100,
+      Pete: 300,
+      Mary: 250,
+    };
+
+    console.log(sumSalaries(salaries)); // 650
+  </script>
+</body>
