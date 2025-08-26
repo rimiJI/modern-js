@@ -1,0 +1,158 @@
+<!-- 구조 분해 할당 -->
+<!-- 👉 박스(배열, 객체) 안에 든 걸 꺼내서 변수에 바로 담는 방법
+쉽게 말하면 “포장 뜯어서 바로 나눠 담기”! -->
+<head>
+  <title></title>
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+  </style>
+  <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div style="margin: 40px">
+    <details>
+      <summary>박스(예: [ ],{ }) 안에 든 걸 뜯어서 나눠담는 방법은?</summary>
+      <pre>구조 분해 할당 destructuring assignment</pre>
+    </details>
+    <details>
+      <summary>
+        다음 배열을 a,b에 각각 꺼내 변수로 할당하여라.<br />let fruits =
+        ["사과", "바나나"];
+      </summary>
+      <pre><code class="language-javascript">
+        let fruits = ["사과", "바나나"];
+        let [a,b] =fruits;
+        //이런 뜻 
+        //let a = '사과'
+        //let b = '바나나'
+      </code></pre>
+    </details>
+    <details>
+      <summary>
+        다음 객체를 키를 변수명으로=값을 변수값으로 각각 담은 변수들을 쓰시고
+        <br />let user = { name: "Tom", age: 10 };
+      </summary>
+      <pre><code class="language-javascript">
+        let {name, age} = user;
+        //이런 뜻 
+        //let name = "Tom"; 
+        //let age = 10 ;
+      </code></pre>
+    </details>
+
+    <details>
+      <summary>특정 요소 버리고싶으면 , , 이런식으로 비워두면 됨</summary>
+      <pre></pre>
+    </details>
+    <details>
+      <summary></summary>
+      <pre></pre>
+    </details>
+    <details>
+      <summary></summary>
+      <pre></pre>
+    </details>
+  </div>
+
+  <script>
+    //🍎배열에서 꺼내기
+    let fruits = ["사과", "바나나"];
+    //배열에서 각각 변수로 만들어주기
+    let [a, b] = fruits;
+    console.log(a, b); // 콘솔 출력: 사과 바나나
+    // ✨ 꿀팁: 변수를 중괄호로 감싸서 객체로 출력하면 변수명을 같이 볼 수 있어요!
+    // ✨ 꿀팁2: log라고 치면 console.log가 입력되는 편리한단축키(스니펫)!
+    console.log({ a, b }); // 콘솔 출력: {a: '사과', b: '바나나'}
+
+    //🍎객체에서 값 꺼내기
+    let user = { name: "Tom", age: 10 };
+    let { name, age } = user; //이런 뜻 let name = "Tom"; let age = 10 ;
+    console.log(name);
+    console.log(age);
+
+    //🍎쉼표를 사용하여 요소 무시하기
+    let [c, , d] = ["Julius", "Caesar", "DDDDDDDDDD"];
+    console.log(d); //DDDDDDDDDD
+
+    //🍎할당 연산자 우측엔 모든 이터러블(iterable)(반복)이 올 수 있다.
+    let [aa, bb, cc] = "123";
+    console.log({ aa, bb, cc });
+    //{aa: '1', bb: '2', cc: '3'}
+
+    let [one, two, three] = new Set([1, 2, 3, 1, 1, 1, 1]);
+    console.log(new Set([1, 2, 3, 1, 1, 1, 1]));
+    //Set(3) {1, 2, 3}
+    console.log(one);
+    //1
+    //각각 변수로 나눠진 aa,bb,cc를 한꺼번에 출력해서 보는 방법
+    console.log({ one, two, three });
+    //{one: 1, two: 2, three: 3}
+
+    //🍎.entries()로 반복하여 변수로 분해 할당하기
+    user = {
+      name: "John",
+      age: 30,
+    };
+
+    for (let [k, v] of Object.entries(user)) {
+      console.log(`${k}:${v}`);
+    }
+
+    //🍎맵에서도 사용 가능
+    user = new Map(); //Map(0) {size: 0}
+    user.set("이름", "빵순이"); //Map(1) {'이름' => '빵순이'}
+    user.set("나이", "80세"); //Map(2) {'이름' => '빵순이', '나이' => '80세'}
+    console.log(user);
+    // 돌아가면서 출력
+    for (let [k, v] of user) {
+      console.log(`${k}는 ${v}`);
+    }
+
+    //🍎'…'로 나머지 요소 가져오기
+    let [char1, char2, ...rest] = ["a", "b", "c", "d", "e", "f", "g"];
+    console.log(char1); //'a'
+    console.log(char2); //'b'
+    console.log(rest); //['c', 'd', 'e', 'f', 'g']
+    // 콘솔 출력: {char1: 'a', char2: 'b', restChars: Array(5)}
+    console.log({ char1, char2, rest });
+
+    //🍎객체 분해할때 변수명을 다르게 설정하고 싶다면?? -순서는 상관없다(배열이 아니니깐)
+    let options = {
+      title: "메뉴",
+      width: 100,
+      height: 200,
+    };
+    // { 객체 프로퍼티: 목표 변수 } ⭐
+    let { width: W, height: H, title } = options;
+    //이렇게 된 상황 let W:100; let H:200 , let title:"메뉴";
+    console.log(options); //{title: '메뉴', width: 100, height: 200}
+    console.log(W); //100
+    console.log(H); //200
+    console.log(title); //메뉴
+    console.log({ W, H, title }); //{W: 100, H: 200, title: '메뉴'}
+    console.log([W, H, title]); // [100, 200, '메뉴']
+
+    //🍎이전에 할당된거 재사용하기 (let 없이 사용하기)
+    let ttitle, width, height;
+    //아래는에러발생 이유: {}를 객체가 아닌 코드블럭으로 인지해서
+    // {ttitle, width, height}={title: "Menu", width: 200, height: 100};
+    //이렇게 바꿔주면 무탈함:
+    ({ ttitle, width, height } = { title: "Menu", width: 200, height: 100 });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
