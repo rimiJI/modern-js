@@ -76,7 +76,11 @@
     //변수에 할당 된 함수를 clearTimeout에 넣으면 취소됨
     let timeId = setTimeout(() => console.log("이친구를 취소하시오"), 1000); //이친구를 취소하시오
     let timeId2 = setTimeout(sayHi, 1000); //안녕?
+    console.log(timeId);
     clearTimeout(timeId);
     clearTimeout(timeId2);
+    console.log(timeId);
+
+    //🍎setInterval로 일정 시간 반복하기
   </script>
 </body>
