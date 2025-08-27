@@ -149,8 +149,42 @@
     let ttitle, width, height;
     //아래는에러발생 이유: {}를 객체가 아닌 코드블럭으로 인지해서
     // {ttitle, width, height}={title: "Menu", width: 200, height: 100};
-    //이렇게 바꿔주면 무탈함:
+    //이렇게 바꿔주면 무탈함: ( )괄호 붙여주기
     ({ ttitle, width, height } = { title: "Menu", width: 200, height: 100 });
+
+    //🍊과제 - 구조 분해 할당
+    user = {
+      name: "John",
+      years: 30,
+    };
+    //name 을 그 전에 한번 할당해서 재할당 방식으로 = 구조분해 할당
+    ({ name, years: age, isAdmin = false } = user);
+    console.log(name); //John
+    console.log(age); //30
+    console.log(isAdmin); //false
+
+    //🍊최대 급여 계산하기
+    let salaries = {
+      John: 100,
+      Pete: 300,
+      Mary: 250,
+    };
+
+    function topS(salaries) {
+      let max = 0;
+      let maxName = null;
+
+      for (const [name, salary] of Object.entries(salaries)) {
+        if (max < salary) {
+          max = salary;
+          maxName = name;
+        }
+      }
+
+      return `${maxName}는 ${max}만원을 받아요`;
+    }
+
+    console.log(topS(salaries)); //Pete
   </script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
