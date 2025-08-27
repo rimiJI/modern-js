@@ -60,7 +60,7 @@ Chrome으로 디버깅하기<br>
 배열<br>
 🦕배열과 메서드<br>
 🧶iterable 객체<br>
-🔴맵과 셋<br>
+맵과 셋<br>
 🧶위크맵과 위크셋<br>
 🦕Object.keys, values, entries<br>
 🦕구조 분해 할당<br>
@@ -76,7 +76,7 @@ Date 객체와 날짜<br>
 🧶전역 객체<br>
 객체로서의 함수와 기명 함수 표현식<br>
 🧶new Function 문법<br>
-🦕setTimeout과 setInterval을 이용한 호출 스케줄링<br>
+🔴🦕setTimeout과 setInterval을 이용한 호출 스케줄링<br>
 🧶call/apply와 데코레이터, 포워딩<br>
 🦕함수 바인딩<br>
 🦕화살표 함수 다시 살펴보기<br>
