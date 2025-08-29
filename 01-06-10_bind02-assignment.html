@@ -1,0 +1,88 @@
+<head>
+  <title>bind - assignment</title>
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+  </style>
+  <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <h3 style="color: rgb(172, 172, 172)">bind - assignment</h3>
+  <div>
+    <details>
+      <pre></pre>
+    </details>
+  </div>
+
+  <script>
+    //🍎bind를 적용한 함수 메서드를 정의하기
+    function f() {
+      console.log(this); //null출력
+    }
+
+    let user = {
+      g: f.bind(null),
+    };
+
+    user.g();
+
+    //🍎bind를 적용한 함수 프로퍼티. 동일한가요??
+    // 비교를 위해서는 할당 연산자(=)가 아닌 비교 연산자(===)를 사용해야 합니다.
+    // 또한, 함수를 호출하는 f()가 아닌 함수 자체인 f를 비교해야 합니다.
+    console.log(f === user.g); // false 출력
+    // f.bind()는 새로운 함수를 반환하므로, 원본 함수 f와는 다릅니다.
+
+    //🍎this 값이 undefined인 함수 고치기
+    function askPassword(ok, fail) {
+      let password = prompt("비밀번호를 입력해주세요.", "");
+      if (password == "rockstar") ok();
+      else fail();
+    }
+
+    let loginUser = {
+      name: "John",
+
+      loginOk() {
+        alert(`${this.name}님이 로그인하였습니다.`);
+      },
+
+      loginFail() {
+        alert(`${this.name}님이 로그인에 실패하였습니다.`);
+      },
+    };
+
+    askPassword(
+      loginUser.loginOk.bind(loginUser),
+      loginUser.loginFail.bind(loginUser)
+    );
+
+    //🍎로그인에 부분 적용하기
+    function ask(ok, fail) {
+      let password = prompt("비밀번호 입력: ", "");
+      if (password == "메롱") ok();
+      else fail();
+    }
+
+    let userAsk = {
+      name: "John",
+      login(a) {
+        console.log(this.name + (a ? "로그인 성공" : "로그인 실퍠"));
+      },
+    };
+    //아래를 입력하시오 - 무슨말이야 진짜
+    ask(userAsk.login.bind(userAsk, true), userAsk.login.bind(userAsk, false));
+  </script>
+</body>
