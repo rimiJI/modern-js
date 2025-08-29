@@ -44,12 +44,19 @@
       <pre></pre>
     </details>
     <details>
-      <summary></summary>
-      <pre></pre>
+      <summary>.bind(this)는 함수의 '_____버전'을 만듭니다.</summary>
+      <pre>한정된 버전(bound version)</pre>
+    </details>
+    <details>
+      <summary>화살표함수는 어떤 것도 b___시키지않는다.</summary>
+      <pre>
+bind 바인딩, 화살표함수에서 만약 this를 사용하면 외부 렉시컬환경에서 찾는다고 함 </pre
+      >
     </details>
   </div>
 
   <script>
+    //🍎화살표 함수에는 'this’가 없습니다
     let group = {
       title: "1모둠",
       names: ["보라", "호진", "지민"],
@@ -60,5 +67,23 @@
     };
 
     group.showList();
+
+    //🍎화살표 함수엔 'arguments’가 없습니다
+    //🚩일반함수에는 argu가 있다.
+    function normal(a, b) {
+      console.log("일반함수의 arguments: ", arguments);
+      //argument는 JS가 일반함수 안에 자동으로 만들어주는 특별한변수이다.
+    }
+    normal("야", "호", "코", "코"); //{0: "야",1: "호,"2: "코",3: "코"} 유사배열객체를 가짐
+
+    //🍎화살표 함수는 arguments가 없다.
+    // let arrow = (a, b) => {
+    //   console.log("화살표함수의 arguments: ", arguments);
+    // };
+    // arrow("야", "호", "코", "코"); //error 발생: Uncaught ReferenceError: arguments is not defined at arrow
+
+    //🍎그러므로 화살표함수 arguments를 사용하고 싶으면 바깥함수를 만들어줘서
+    //바깥함수의 arguments를 사용하도록 해줘야한다.
+    //아이같이 의존적인 녀석 (정확히표현하자면 간결성을 위해 만들어진 용도라서 기능이 제한적인 부분이 있다.)
   </script>
 </body>
