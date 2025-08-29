@@ -23,19 +23,24 @@
   <h3 style="color: rgb(172, 172, 172)">arrow-function</h3>
   <div>
     <details>
-      <summary></summary>
-      <pre></pre>
+      <summary>화살표함수와 일반함수의 차이점- 1.___를 가지지 않는다.</summary>
+      <pre>this</pre>
     </details>
     <details>
-      <summary></summary>
-      <pre></pre>
+      <summary>
+        2.인수에 접근할수있는게 없다. 즉 유사배열객체인 a________가 없다.
+      </summary>
+      <pre>arguments</pre>
     </details>
     <details>
-      <summary></summary>
-      <pre></pre>
+      <summary>n _ _와 함께 호출생성할수없다 (this도 없기 때문)</summary>
+      <pre>new</pre>
     </details>
     <details>
-      <summary></summary>
+      <summary>
+        super도 없다!<br />화살표 함수와 super의 관계는 클래스 상속 챕터에서
+        학습할 예정
+      </summary>
       <pre></pre>
     </details>
     <details>
@@ -44,5 +49,16 @@
     </details>
   </div>
 
-  <script></script>
+  <script>
+    let group = {
+      title: "1모둠",
+      names: ["보라", "호진", "지민"],
+      showList() {
+        this.names.forEach((name) => console.log(this.title + ":" + name));
+      }, // 화살표함수는 this가 존재하지 않으므로 에러도 발생하지 않고 바깥에 해당하는 this들을 쓴다.
+      //만약 화살표함수가 아니라 일반함수를 사용했으면 에러가 발생했을 것. (this는 undefined title에 접근했을 것이다. )
+    };
+
+    group.showList();
+  </script>
 </body>
