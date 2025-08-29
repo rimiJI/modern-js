@@ -11,6 +11,13 @@
       padding: 1em; /* 안쪽 여백을 줍니다. */
       border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
     }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+    .ml-1 {
+      margin-left: 1em;
+    }
   </style>
   <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
   <link
@@ -53,6 +60,15 @@
 bind 바인딩, 화살표함수에서 만약 this를 사용하면 외부 렉시컬환경에서 찾는다고 함 </pre
       >
     </details>
+    <details>
+      <summary>
+        정리하자면 arguments를 사용하던 옛날엔."화살표함수가 의존적"이지만
+        <br />
+        <span class="red ml-1">요즘엔</span> 나머지매개변수(...args)가 등장하여
+        화살표함수도 __적으로 사용할 수 있게 되었다.
+      </summary>
+      <pre>독립적</pre>
+    </details>
   </div>
 
   <script>
@@ -85,5 +101,20 @@ bind 바인딩, 화살표함수에서 만약 this를 사용하면 외부 렉시�
     //🍎그러므로 화살표함수 arguments를 사용하고 싶으면 바깥함수를 만들어줘서
     //바깥함수의 arguments를 사용하도록 해줘야한다.
     //아이같이 의존적인 녀석 (정확히표현하자면 간결성을 위해 만들어진 용도라서 기능이 제한적인 부분이 있다.)
+    function outer(a) {
+      let arrow = () => {
+        console.log("화살표함수바로바깥의 arguments: ", arguments);
+      };
+      arrow("읭", "뭥미");
+    }
+    outer("밖에서", "준", "값이지롱"); //{ '0': '밖에서', '1': '준', '2': '값' }
+
+    //🍎화살표 함수에서 인수를 다루는 현대적인 방법: 나머지 매개변수 (...args)
+    // '...args'는 신문법(ES6)이 맞으며, arguments 객체를 대체하는 더 좋은 방법입니다.
+    // 진짜 배열이기 때문에 map, filter 등 배열 메서드를 바로 사용할 수 있습니다.
+    let arrowArgs = (...args) => {
+      console.log("화살표함수args: ", args);
+    };
+    arrowArgs("에이", "알", "쥐", "에스"); // ["에이", "알", "쥐", "에스"] -> 진짜 배열이 출력됩니다.
   </script>
 </body>
