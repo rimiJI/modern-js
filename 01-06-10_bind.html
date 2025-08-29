@@ -2,12 +2,39 @@
 <body>
   <script>
     let user = {
-      name: "John",
+      username: "John", // 'name'이 아닌 다른 속성 이름으로 변경 (window.name이라는 특수한 존재)
       sayHi() {
-        console.log(`Hello.${name}`);
+        console.log(`Hello.${this.username}!!`);
       },
     };
 
-    setTimeout(user.sayHi, 1000);
+    // setTimeout(user.sayHi, 5000); // this를 잃어버려 "Hello.undefined!!" 출력
+    // setTimeout(user.sayHi(), 5000); //user.sayHi() 괄호있는건 바로 호출됨 , 5초 안기다림
+
+    // 해결책: 래퍼 함수를 사용해 1초 뒤에 user.sayHi()를 호출하도록 예약
+    // 이렇게 하면 호출 시점의 this가 user로 보장됩니다.
+    // setTimeout(() => user.sayHi(), 5000); // "Hello.John!!" 출력
+
+    // 바인드 사용
+    let say = user.sayHi.bind(user);
+    // 이제 객체 없이도 객체 메서드를 호출할 수 있습니다.
+    say(); //Hello.John!!  바로 실행
+    setTimeout(say, 5000); //5초 뒤에 say실행
+
+    //5초 이내에 user값 변경해도
+    //say는 기존 값을 사용합니다.
+    //'메롱메롱메롱' 이 안뜨고 위에 설정해둔
+    // Hello.John!!이 뜬다.
+    // user = {
+    //   sayHi() {
+    //     console.log("메롱메롱메롱");
+    //   },
+    // };
+
+    //🍎bind()는 원본함수를 바꾸지 않는다.
+    // 위에서 user가 새로 할당되어 'say' 메서드가 없습니다. 'sayHi'를 사용해야 합니다.
+    let f = user.sayHi.bind(user);
+    f("Hi"); // "메롱메롱메롱"
+    user.sayHi("bye"); // "메롱메롱메롱"
   </script>
 </body>
