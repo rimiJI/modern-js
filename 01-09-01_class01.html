@@ -131,5 +131,44 @@
     //새로운 클래스를 만듦
     let User4 = makeClass("방가룽");
     new User4().sayHi(); //방가룽
+
+    //🍅😣잠시 getter setter에 대한 이야기
+    //1.비서 고용하기
+
+    // javascript.info의 '접근자 프로퍼티'에 대한 설명입니다.
+    class SmartUser {
+      constructor(name) {
+        // 생성자에서 this.name에 값을 할당하면,
+        // 아래에 정의된 'set name()' 메서드가 자동으로 호출됩니다.
+        this.name = name;
+      }
+
+      // 'name' 프로퍼티를 위한 게터(getter)
+      get name() {
+        // 내부 프로퍼티인 '_name'의 값을 반환합니다.
+        console.log("게터 실행!");
+        return this._name;
+      }
+
+      // 'name' 프로퍼티를 위한 세터(setter)
+      set name(value) {
+        console.log("세터 실행!");
+        // 유효성 검사: 이름이 너무 짧으면 경고하고 값을 할당하지 않습니다.
+        if (value.length < 2) {
+          console.log("이름이 너무 짧습니다.");
+          return;
+        }
+        // 실제 데이터는 내부 프로퍼티 '_name'에 저장합니다.
+        this._name = value;
+      }
+    }
+    //제 이름을 얄리로 등록해주세요
+    let smartUser = new SmartUser("얄리");
+    //이름이 뭐라고 등록되어있죠?
+    console.log(smartUser.name); //출력: 얄리
+    //이름바꾸기 실패(규칙 위반.2글자보다 짧다)
+    smartUser.name = "냥"; //출력: 이름이 너무 짧습니다.
+    //그래서 지금 내 이름이 뭐죵?
+    console.log(smartUser.name); //얄리
   </script>
 </body>
