@@ -49,6 +49,26 @@
     행동인 메서드(함수)</pre
       >
     </details>
+    <details>
+      <summary>자바스크립트에서 클래스는 __의 한 종류이다</summary>
+      <pre>함수</pre>
+    </details>
+    <details>
+      <summary>정확히는 ___ 메서드와 동일</summary>
+      <pre>생성자 메서드</pre>
+    </details>
+    <details>
+      <summary>클래스도 함수처럼 다른 표현식내부에 _의 , _달, _환, _당</summary>
+      <pre>정의, 전달, 반환, 할당</pre>
+    </details>
+    <details>
+      <summary>클래스도 편수선언할당 할 수 있나?</summary>
+      <pre>YES.<br>단, 클래스의 이름은 내부에서만 사용 가능</pre>
+    </details>
+    <details>
+      <summary>클래스를 동적으로 생성하는 것도 가능?</summary>
+      <pre>YES</pre>
+    </details>
   </div>
 
   <script>
@@ -67,5 +87,49 @@
     }
 
     //🍎기본문법
+    class User {
+      constructor(name) {
+        this.name = name;
+      }
+      //메서드 생성 // 참고로 클래스 안 메서드사이에 ,없음
+      sayHi() {
+        console.log(this.name);
+      }
+    }
+
+    let user = new User("John");
+    user.sayHi();
+    //JS에서 클래스는 함수의 한종류이다.
+    console.log(typeof User); //function
+    //정확히는 생성자 메서드와 동일
+    console.log(User === User.prototype.constructor); //true
+    //클래스 내부에 정의한 메서드는 User.prototype 에 저장됩니다.
+    console.log(User.prototype.sayHi); // ƒ sayHi() {console.log(this.name);}
+
+    //🍅클래스도 다른 함수처럼 클래스표현식을 만들어 사용할 수 있다.
+    //let 과 같은 것으로 변수선언 가능하단 뜻
+    //근데 이렇게 사용하면 그 클래스의 이름은 오직 내부에서만 사용할수있다.
+    let User3 = class MyClass3 {
+      sayHi() {
+        console.log("클래스 내부에서만 사용 할 수 있지롱");
+      }
+    };
+    new User3().sayHi(); //출력: 클래스 내부에서만 사용 할 수 있지롱
+    //이게 안된다.
+    //Uncaught ReferenceError: MyClass3 is not defined 뜸
+    // console.log(MyClass3);
+
+    //🍅클래스를 동적으로 생성하는 것도 가능
+    function makeClass(a) {
+      //클래스를 선언하고 이를 반환
+      return class {
+        sayHi() {
+          console.log(a);
+        }
+      };
+    }
+    //새로운 클래스를 만듦
+    let User4 = makeClass("방가룽");
+    new User4().sayHi(); //방가룽
   </script>
 </body>
