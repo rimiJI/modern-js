@@ -132,9 +132,9 @@
     let User4 = makeClass("방가룽");
     new User4().sayHi(); //방가룽
 
+    // getter나 setter, 계산된 프로퍼티(computed property)를 지원
     //🍅😣잠시 getter setter에 대한 이야기
     //1.비서 고용하기
-
     // javascript.info의 '접근자 프로퍼티'에 대한 설명입니다.
     class SmartUser {
       constructor(name) {
@@ -170,5 +170,22 @@
     smartUser.name = "냥"; //출력: 이름이 너무 짧습니다.
     //그래서 지금 내 이름이 뭐죵?
     console.log(smartUser.name); //얄리
+
+    //🍅계산된 메서드 이름
+    class User5 {
+      ["say" + "Hi"]() {
+        console.log("계산된 메서드 출력");
+      }
+    }
+    new User5().sayHi(); //계산된 메서드 출력
+
+    //🍅클래스 필드 (프로퍼티이름=값)
+    class User6 {
+      name = "보라";
+      sayHi() {
+        console.log(`${this.name}님 안녕하세요!!`);
+      }
+    }
+    new User6().sayHi(); //보라님 안녕하세요!!
   </script>
 </body>
