@@ -49,6 +49,26 @@
     행동인 메서드(함수)</pre
       >
     </details>
+    <details>
+      <summary>자바스크립트에서 클래스는 __의 한 종류이다</summary>
+      <pre>함수</pre>
+    </details>
+    <details>
+      <summary>정확히는 ___ 메서드와 동일</summary>
+      <pre>생성자 메서드</pre>
+    </details>
+    <details>
+      <summary>클래스도 함수처럼 다른 표현식내부에 _의 , _달, _환, _당</summary>
+      <pre>정의, 전달, 반환, 할당</pre>
+    </details>
+    <details>
+      <summary>클래스도 편수선언할당 할 수 있나?</summary>
+      <pre>YES.<br>단, 클래스의 이름은 내부에서만 사용 가능</pre>
+    </details>
+    <details>
+      <summary>클래스를 동적으로 생성하는 것도 가능?</summary>
+      <pre>YES</pre>
+    </details>
   </div>
 
   <script>
@@ -66,11 +86,114 @@
       //  반드시 [ ] 로 써야함 . )
     }
 
+<<<<<<< HEAD
     //🍎기본문법-생성자 메서드
+=======
+    //🍎기본문법
+>>>>>>> e8ee7972516a4c79caf499047ac3d529ea87d0a6
     class User {
       constructor(name) {
         this.name = name;
       }
+<<<<<<< HEAD
     }
+=======
+      //메서드 생성 // 참고로 클래스 안 메서드사이에 ,없음
+      sayHi() {
+        console.log(this.name);
+      }
+    }
+
+    let user = new User("John");
+    user.sayHi();
+    //JS에서 클래스는 함수의 한종류이다.
+    console.log(typeof User); //function
+    //정확히는 생성자 메서드와 동일
+    console.log(User === User.prototype.constructor); //true
+    //클래스 내부에 정의한 메서드는 User.prototype 에 저장됩니다.
+    console.log(User.prototype.sayHi); // ƒ sayHi() {console.log(this.name);}
+
+    //🍅클래스도 다른 함수처럼 클래스표현식을 만들어 사용할 수 있다.
+    //let 과 같은 것으로 변수선언 가능하단 뜻
+    //근데 이렇게 사용하면 그 클래스의 이름은 오직 내부에서만 사용할수있다.
+    let User3 = class MyClass3 {
+      sayHi() {
+        console.log("클래스 내부에서만 사용 할 수 있지롱");
+      }
+    };
+    new User3().sayHi(); //출력: 클래스 내부에서만 사용 할 수 있지롱
+    //이게 안된다.
+    //Uncaught ReferenceError: MyClass3 is not defined 뜸
+    // console.log(MyClass3);
+
+    //🍅클래스를 동적으로 생성하는 것도 가능
+    function makeClass(a) {
+      //클래스를 선언하고 이를 반환
+      return class {
+        sayHi() {
+          console.log(a);
+        }
+      };
+    }
+    //새로운 클래스를 만듦
+    let User4 = makeClass("방가룽");
+    new User4().sayHi(); //방가룽
+
+    // getter나 setter, 계산된 프로퍼티(computed property)를 지원
+    //🍅😣잠시 getter setter에 대한 이야기
+    //1.비서 고용하기
+    // javascript.info의 '접근자 프로퍼티'에 대한 설명입니다.
+    class SmartUser {
+      constructor(name) {
+        // 생성자에서 this.name에 값을 할당하면,
+        // 아래에 정의된 'set name()' 메서드가 자동으로 호출됩니다.
+        this.name = name;
+      }
+
+      // 'name' 프로퍼티를 위한 게터(getter)
+      get name() {
+        // 내부 프로퍼티인 '_name'의 값을 반환합니다.
+        console.log("게터 실행!");
+        return this._name;
+      }
+
+      // 'name' 프로퍼티를 위한 세터(setter)
+      set name(value) {
+        console.log("세터 실행!");
+        // 유효성 검사: 이름이 너무 짧으면 경고하고 값을 할당하지 않습니다.
+        if (value.length < 2) {
+          console.log("이름이 너무 짧습니다.");
+          return;
+        }
+        // 실제 데이터는 내부 프로퍼티 '_name'에 저장합니다.
+        this._name = value;
+      }
+    }
+    //제 이름을 얄리로 등록해주세요
+    let smartUser = new SmartUser("얄리");
+    //이름이 뭐라고 등록되어있죠?
+    console.log(smartUser.name); //출력: 얄리
+    //이름바꾸기 실패(규칙 위반.2글자보다 짧다)
+    smartUser.name = "냥"; //출력: 이름이 너무 짧습니다.
+    //그래서 지금 내 이름이 뭐죵?
+    console.log(smartUser.name); //얄리
+
+    //🍅계산된 메서드 이름
+    class User5 {
+      ["say" + "Hi"]() {
+        console.log("계산된 메서드 출력");
+      }
+    }
+    new User5().sayHi(); //계산된 메서드 출력
+
+    //🍅클래스 필드 (프로퍼티이름=값)
+    class User6 {
+      name = "보라";
+      sayHi() {
+        console.log(`${this.name}님 안녕하세요!!`);
+      }
+    }
+    new User6().sayHi(); //보라님 안녕하세요!!
+>>>>>>> e8ee7972516a4c79caf499047ac3d529ea87d0a6
   </script>
 </body>

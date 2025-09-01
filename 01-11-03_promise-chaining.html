@@ -1,0 +1,121 @@
+<!-- 프라미스 체이닝!
+    fetch나옴 -->
+<head>
+  <title>promise-chaining</title>
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+    .ml-1 {
+      margin-left: 1em;
+    }
+  </style>
+  <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <h3 style="color: rgb(172, 172, 172)">promise-chaining</h3>
+  <div>
+    <pre><code><span class="red">fetch</span>는 기본적으로 프라미스를 리턴하는 함수이다.
+들여다보면 내부에 (resolve,reject)가 있다.
+
+그리고 그게 성공(resolve)인지 실패(reject)인지는 <span class="red">기본값이 resolve이다!</span>
+기본적으로 성공(resolve)로 가는데.
+그 성공의 기준은 서버 응답을 받았느냐로
+응답내용이 200이냐, 404같은 상태코드는 상관없다.
+즉, 네트워크 연결만 되어있으면 resolve로 감.
+그래서 .then()으로 들어간다. 
+reject의 사례: 네트워크 인터넷 끊김, 잘못된 서버 URL, 서버 안켜짐 </code></pre>
+    <div>그래서 <b>.then</b> 과 함께하는 것 !!</div>
+    <details>
+      <summary>
+        .then 또는 .catch, .finally의 핸들러(어떤 경우도 상관없음)가 프라미스를
+        반환하면, <br />나머지 체인은 프라미스가 처리될 때까지 __합니다.
+      </summary>
+      <pre>대기</pre>
+    </details>
+
+    <pre><code class="language-javascript">
+1. 프라미스 체이닝! Promise Chaining!
+then().then().then()이렇게 작업을 순서대로 줄 세워서 처리하는 것을 체이닝!
+앞의 then()이 끝나야 뒤가 실행된다.
+
+    fetch("/user.json") //1단계: 사용자 정보 요청
+      .then((res) => res.json()) //2단계: JSON으로 파싱
+      .then((user) => fetch(`/repos/${user.name}`)) //3단계: 사용자 이름으로 다른 요청
+      .then((res) => res.json()) //4단계: 파싱
+      .then((data) => console.log(data)); //5단계: 결과 출력
+    </code></pre>
+    <pre><code class="language-javascript">
+2. 프라미스 에러 핸들링! Promise Error Handling (.catch())
+.catch()는 에러가 생겼을 떄만 실행되는 함수.
+try...catch와 비슷한데, 비동기 작업 안에서 일어난 에러를 다룸 
+
+    fetch("/없는파일")
+      .then((res) => res.json()) //이부분에 에러가나면
+      .then((data) => console.log(data))
+      .then((err) => console.log("❌에러발생", err)); //여기로 옴
+    </code></pre>
+    <pre><code class="language-javascript">
+3. 어싱크/어웨이크! async/await !
+
+    async function loadUserData() {
+      try {
+        let res = await fetch("/user.json"); //기다려!
+        let user = await res.json(); //또 기다려!
+        let repoRes = await fetch(`/repos/${user.name}`);
+        let repos = await repoRes.json();
+        console.log(repos);
+      } catch (err) {
+        console.log("❌에러!!");
+      }
+    }
+    </code></pre>
+    <pre><code class="language-javascript"></code></pre>
+  </div>
+
+  <script>
+    //1. 프라미스 체이닝
+    fetch("/user.json") //1단계: 사용자 정보 요청
+      .then((res) => res.json()) //2단계: JSON으로 파싱
+      .then((user) => fetch(`/repos/${user.name}`)) //3단계: 사용자 이름으로 다른 요청
+      .then((res) => res.json()) //4단계: 파싱
+      .then((data) => console.log(data)); //5단계: 결과 출력
+
+    //2. 프라미스 에러 핸들링!
+    fetch("/없는파일")
+      .then((res) => res.json()) //이부분에 에러가나면
+      .then((data) => console.log(data))
+      .then((err) => console.log("❌에러발생", err)); //여기로 옴
+
+    //3. async/await
+    async function loadUserData() {
+      try {
+        let res = await fetch("/user.json"); //기다려!
+        let user = await res.json(); //또 기다려!
+        let repoRes = await fetch(`/repos/${user.name}`);
+        let repos = await repoRes.json();
+        console.log(repos);
+      } catch (err) {
+        console.log("❌에러!!");
+      }
+    }
+  </script>
+  <!-- 2. Prism.js의 JavaScript 파일을 불러옵니다.-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</body>
