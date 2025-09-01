@@ -1,5 +1,5 @@
 <head>
-  <title>Name</title>
+  <title>callback</title>
   <style>
     pre {
       /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
@@ -27,7 +27,62 @@
 </head>
 
 <body>
-  <h3 style="color: rgb(172, 172, 172)">Name</h3>
+  <h3 style="color: rgb(172, 172, 172)">callback</h3>
+  <div>
+    <details>
+      <summary>원하는 때에 동작 실행하는 특별한 함수는?</summary>
+      <pre>콜백 callbacks함수</pre>
+    </details>
+  </div>
+
+  <div>
+    <details>
+      <summary>
+        어떤 작업을 기다리지 않고, "나중에 해줘"하고 맡겨놓는 방식을 뭐라고
+        하는가?<br />지금 당장 안 끝나도 뒤에 있는 코드들이 먼저 실행될 수 있는
+        것<br />기다리지 않고, 나중에 실행될 작업을 예약해둠 (예약표에 적어놓고
+        바로 다른 일 하기)
+      </summary>
+      <pre>
+         <code class="language-javascript">
+    비동기 asynchronous
+    
+        console.log("A");
+        setTimeout(() => {console.log("B -2초뒤실행");}, 2000);
+        console.log("C");
+          </code>
+      </pre>
+    </details>
+  </div>
+  <div>
+    <details>
+      <summary>하나 끝나야 다음 실행 (줄 서기)은?</summary>
+      <pre>
+         <code class="language-javascript">
+        동기 synchronous
+            
+            console.log("A👁️👁️");
+            console.log("B👁️👁️");
+            console.log("C👁️👁️");
+          </code>
+      </pre>
+    </details>
+  </div>
+  <div>
+    <details>
+      <summary>
+        실무에서 맞닥뜨리는 비동기 동작은 아주 다양합니다. 스크립트나 모듈을
+        로딩하는 것 또한 비동기 동작입니다
+      </summary>
+      <pre>아주 많이 쓰인다구!</pre>
+    </details>
+  </div>
+  <div>
+    <details>
+      <summary></summary>
+      <pre></pre>
+    </details>
+  </div>
   <div>
     <details>
       <summary></summary>
@@ -35,5 +90,27 @@
     </details>
   </div>
 
-  <script></script>
+  <script>
+    //비동기 (예약해두고 다른 일하기)
+    console.log("A");
+    setTimeout(() => {
+      console.log("B -2초뒤실행");
+    }, 2000);
+    console.log("C");
+
+    //동기 (줄 서서 빤히 처다보면서 기다리기)
+    console.log("A👁️👁️");
+    console.log("B👁️👁️");
+    console.log("C👁️👁️");
+
+    //비동기 동작처리 (src에 있는 스크립트 읽어오는 함수 loadScript 예시)
+    function loadScript(src) {
+      //<script src="…">를 동적으로 만들고 이를 문서에 추가
+      let script = document.createElement("script"); //태그생성
+      script.src = src; //속성 src 동적 추가
+      document.head.append(script); //문서에 추가
+    }
+    //위에서 만든거 실행
+    loadScript("/my/script.js");
+  </script>
 </body>
