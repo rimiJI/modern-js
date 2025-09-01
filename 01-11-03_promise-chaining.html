@@ -47,7 +47,73 @@ reject의 사례: 네트워크 인터넷 끊김, 잘못된 서버 URL, 서버 �
       </summary>
       <pre>대기</pre>
     </details>
+
+    <pre><code class="language-javascript">
+1. 프라미스 체이닝! Promise Chaining!
+then().then().then()이렇게 작업을 순서대로 줄 세워서 처리하는 것을 체이닝!
+앞의 then()이 끝나야 뒤가 실행된다.
+
+    fetch("/user.json") //1단계: 사용자 정보 요청
+      .then((res) => res.json()) //2단계: JSON으로 파싱
+      .then((user) => fetch(`/repos/${user.name}`)) //3단계: 사용자 이름으로 다른 요청
+      .then((res) => res.json()) //4단계: 파싱
+      .then((data) => console.log(data)); //5단계: 결과 출력
+    </code></pre>
+    <pre><code class="language-javascript">
+2. 프라미스 에러 핸들링! Promise Error Handling (.catch())
+.catch()는 에러가 생겼을 떄만 실행되는 함수.
+try...catch와 비슷한데, 비동기 작업 안에서 일어난 에러를 다룸 
+
+    fetch("/없는파일")
+      .then((res) => res.json()) //이부분에 에러가나면
+      .then((data) => console.log(data))
+      .then((err) => console.log("❌에러발생", err)); //여기로 옴
+    </code></pre>
+    <pre><code class="language-javascript">
+3. 어싱크/어웨이크! async/await !
+
+    async function loadUserData() {
+      try {
+        let res = await fetch("/user.json"); //기다려!
+        let user = await res.json(); //또 기다려!
+        let repoRes = await fetch(`/repos/${user.name}`);
+        let repos = await repoRes.json();
+        console.log(repos);
+      } catch (err) {
+        console.log("❌에러!!");
+      }
+    }
+    </code></pre>
+    <pre><code class="language-javascript"></code></pre>
   </div>
 
-  <script></script>
+  <script>
+    //1. 프라미스 체이닝
+    fetch("/user.json") //1단계: 사용자 정보 요청
+      .then((res) => res.json()) //2단계: JSON으로 파싱
+      .then((user) => fetch(`/repos/${user.name}`)) //3단계: 사용자 이름으로 다른 요청
+      .then((res) => res.json()) //4단계: 파싱
+      .then((data) => console.log(data)); //5단계: 결과 출력
+
+    //2. 프라미스 에러 핸들링!
+    fetch("/없는파일")
+      .then((res) => res.json()) //이부분에 에러가나면
+      .then((data) => console.log(data))
+      .then((err) => console.log("❌에러발생", err)); //여기로 옴
+
+    //3. async/await
+    async function loadUserData() {
+      try {
+        let res = await fetch("/user.json"); //기다려!
+        let user = await res.json(); //또 기다려!
+        let repoRes = await fetch(`/repos/${user.name}`);
+        let repos = await repoRes.json();
+        console.log(repos);
+      } catch (err) {
+        console.log("❌에러!!");
+      }
+    }
+  </script>
+  <!-- 2. Prism.js의 JavaScript 파일을 불러옵니다.-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 </body>
