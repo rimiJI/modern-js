@@ -29,9 +29,23 @@
 <body>
   <h3 style="color: rgb(172, 172, 172)">promise-chaining</h3>
   <div>
+    <pre><code><span class="red">fetch</span>는 기본적으로 프라미스를 리턴하는 함수이다.
+들여다보면 내부에 (resolve,reject)가 있다.
+
+그리고 그게 성공(resolve)인지 실패(reject)인지는 <span class="red">기본값이 resolve이다!</span>
+기본적으로 성공(resolve)로 가는데.
+그 성공의 기준은 서버 응답을 받았느냐로
+응답내용이 200이냐, 404같은 상태코드는 상관없다.
+즉, 네트워크 연결만 되어있으면 resolve로 감.
+그래서 .then()으로 들어간다. 
+reject의 사례: 네트워크 인터넷 끊김, 잘못된 서버 URL, 서버 안켜짐 </code></pre>
+    <div>그래서 <b>.then</b> 과 함께하는 것 !!</div>
     <details>
-      <summary></summary>
-      <pre></pre>
+      <summary>
+        .then 또는 .catch, .finally의 핸들러(어떤 경우도 상관없음)가 프라미스를
+        반환하면, <br />나머지 체인은 프라미스가 처리될 때까지 __합니다.
+      </summary>
+      <pre>대기</pre>
     </details>
   </div>
 
