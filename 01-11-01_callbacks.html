@@ -111,6 +111,35 @@
       document.head.append(script); //문서에 추가
     }
     //위에서 만든거 실행
-    loadScript("/my/script.js");
+    //비동기적이다. 즉,
+    loadScript("01-11-01_test-callbacks.js"); //또는 loadScript("./01-11-01_test-callbacks.html");
+    //loadScript 아래의 코드는
+    //스크립트 로딩이 끝날 때까지 기다리지 않고
+    //실행된다.
+
+    //이거 안됨
+    ////newFunction is not defined 뜸
+    // newFunction();
+
+    //Why??
+    //브라우저가 스크립트 읽어로 시간 충분히 확보 못해서
+    //loadScript2의 두번째 인수로 callback함수 추가해보자.
+    function loadScript2(src, callback) {
+      let script = document.createElement("script");
+      script.src = src;
+
+      script.onload = () => callback(script);
+
+      document.head.append(script);
+    }
+    //함수 실행 ( 단, script는 js다 html이 아닌.)
+    loadScript2("01-11-01_test-callbacks.js", function () {
+      //콜백함수는 스크립트 로드가 끝나면 실행됩니다.
+      newFunction();
+    });
   </script>
+
+  <!-- 아래 둘 다 정상작동됨 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
 </body>
