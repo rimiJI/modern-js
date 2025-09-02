@@ -114,13 +114,13 @@ Date 객체와 날짜<br>
 ### 프라미스와 async, await
 
 🧶콜백<br>
-🔴🦕프라미스<br>
+🦕프라미스<br>
 🔸🦕프라미스 체이닝<br>
 🔸🦕프라미스와 에러 핸들링<br>
 🧶프라미스 API<br>
 🧶프라미스화<br>
 🧶마이크로태스크<br>
-🦕async와 await<br>
+🔴🦕async와 await<br>
 
 ### 제너레이터와 비동기 이터레이션
 
