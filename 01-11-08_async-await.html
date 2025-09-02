@@ -71,23 +71,23 @@
     //자바는 동기적으로 작동 (물론 hoisting 호이스팅(-은 변수함수선언이 코드 맨 위로 끌어올려지는 경우)는 특수한 상황 )
     // - 비동기쓰고 싶은데?(통신):promise가 나옴(fetch)
     // - 간결하게 동기적으로 쓰고싶은데? asynchronous 비동기로 시작했지만 동기적으로 만들어주는 async/await - try/catch - finally
-    //[1]async
+    //🍎[1]async
     async function f() {
       return 1;
     }
     // f().then(alert); //자꾸 알림창떠서 임시로 죽임
 
-    //[2]명시적 프라미스 반환도 가능
+    //🍎[2]명시적 프라미스 반환도 가능
     async function ff() {
       return Promise.resolve(2);
     }
     // ff().then(alert);//자꾸 알림창떠서 임시로 죽임
 
-    //[3]await
+    //🍎[3]await
     //await는 async함수 안에서만 동작한다.
     // let value = await promise; 요런식으로 씀
 
-    //[4]await 동작 예시 (1초 뒤 실행)
+    //🍎[4]await 동작 예시 (1초 뒤 실행)
     async function fff() {
       let promise = new Promise((resolve, reject) => {
         setTimeout(() => resolve("완료!"), 2000); //2초 뒤에 '해결(완료!)' 함수를 실행하여라
@@ -118,7 +118,7 @@
     //   let user = await response.json();
     // })();
 
-    //[6-1] 외부 API를 사용한 성공 예제
+    //🍎[6-1] 외부 API를 사용한 성공 예제
     // (위의 [6]번 예제와 달리, 실제로 존재하는 URL을 사용해 정상 동작하는 코드)
     (async () => {
       // 로컬 파일 대신, 실제로 존재하는 테스트용 API 주소로 변경
@@ -131,7 +131,7 @@
       // alert(`사용자 이름: ${user.name}`); // 실습 편의를 위해 alert는 주석 처리
     })();
 
-    //[6-2] 위 성공한 예제를 try...catch로 감싸서 실패경우도 만들어 줌
+    //🍎[6-2] 위 성공한 예제를 try...catch로 감싸서 실패경우도 만들어 줌
     (async () => {
       try {
         // 로컬 파일 대신, 실제로 존재하는 테스트용 API 주소로 변경
@@ -147,7 +147,7 @@
       }
     })();
 
-    // [7] 클래스안 메서드에도 async/await 선언 가능
+    // 🍎[7] 클래스안 메서드에도 async/await 선언 가능
     // (지금까지 함수 async/await에 대해 공부했는음)
     class Waiter {
       async wait() {
@@ -168,22 +168,21 @@
       throw new Error("에러 발생");
     }
 
-    //[8-1]try..catch로 에러를 잡을 수 있다.
+    //🍎⭐[8-1]try..catch로 에러를 잡을 수 있다.
     // (위에 지연발생을 제거하고 바로 catch로 보내주기 위해)
-    // async function f_catches_error() {
-    //   try {
-    //     let response = await fetch("http://유효하지-않은-주소");
-    //   } catch (err) {
-    //     // fetch와 response.json에서 발행한 에러 모두를 여기서 잡습니다.
-    //     // fetch에서 발생한 에러를 성공적으로 잡았다는 것을 붉은 배경으로 명확히 보여주기위해 (console.log(err)대신 )
-    //     // console.log(err);
-    //     console.error("[8-1] 에러를 성공적으로 잡았습니다:", err);
-    //   }
-    // }
-    // f_catches_error();
+    async function f_catches_error() {
+      try {
+        let response = await fetch("http://유효하지-않은-주소");
+      } catch (err) {
+        // fetch와 response.json에서 발행한 에러 모두를 여기서 잡습니다.
+        // fetch에서 발생한 에러를 성공적으로 잡았다는 것을 붉은 배경으로 명확히 보여주기위해 (console.log(err)대신 )
+        // console.log(err);
+        console.error("[8-1] 에러를 성공적으로 잡았습니다:", err);
+      }
+    }
+    f_catches_error();
 
-    //[8-2]try..catch가 없는 경우 프라미스 거부 상태
-    // 함수 이름을 f_without_catch로 변경하여 다른 f 함수와의 충돌을 피합니다.
+    //[8-2]try..catch가 없는 경우 프라미스 거부 상태 - .catch()를 사용해 거부된 Promise를 처리
     async function f_without_catch() {
       // 이 함수는 유효하지 않은 주소로 fetch를 시도하므로,
       // 호출 시 항상 거부(rejected) 상태의 Promise를 반환합니다.
