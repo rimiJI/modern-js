@@ -1,0 +1,204 @@
+<head>
+  <title></title>
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+    .ml-1 {
+      margin-left: 1em;
+    }
+  </style>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <div>
+    <details>
+      <summary></summary>
+      <pre><code class="language-javascript">
+
+      </code></pre>
+    </details>
+
+    <details>
+      <summary></summary>
+      <pre><code class="language-javascript">
+        
+      </code></pre>
+    </details>
+
+    <details>
+      <summary></summary>
+      <pre><code class="language-javascript">
+        
+      </code></pre>
+    </details>
+
+    <details>
+      <summary></summary>
+      <pre><code class="language-javascript">
+        
+      </code></pre>
+    </details>
+
+    <details>
+      <summary></summary>
+      <pre><code class="language-javascript">
+        
+      </code></pre>
+    </details>
+  </div>
+
+  <script>
+    //자바는 동기적으로 작동 (물론 hoisting 호이스팅(-은 변수함수선언이 코드 맨 위로 끌어올려지는 경우)는 특수한 상황 )
+    // - 비동기쓰고 싶은데?(통신):promise가 나옴(fetch)
+    // - 간결하게 동기적으로 쓰고싶은데? asynchronous 비동기로 시작했지만 동기적으로 만들어주는 async/await - try/catch - finally
+    //[1]async
+    async function f() {
+      return 1;
+    }
+    // f().then(alert); //자꾸 알림창떠서 임시로 죽임
+
+    //[2]명시적 프라미스 반환도 가능
+    async function ff() {
+      return Promise.resolve(2);
+    }
+    // ff().then(alert);//자꾸 알림창떠서 임시로 죽임
+
+    //[3]await
+    //await는 async함수 안에서만 동작한다.
+    // let value = await promise; 요런식으로 씀
+
+    //[4]await 동작 예시 (1초 뒤 실행)
+    async function fff() {
+      let promise = new Promise((resolve, reject) => {
+        setTimeout(() => resolve("완료!"), 2000); //2초 뒤에 '해결(완료!)' 함수를 실행하여라
+      });
+
+      let result = await promise; //기둘
+      alert(result); //모달창으로 띄워라
+    }
+    // fff(); //함수실행 //자꾸 알림창떠서 임시로 죽임
+
+    //[5]일반함수에는 await 사용할 수 없음
+    // function fx() {
+    //   let promise = Promise.resolve(1);
+    //   let result =await promise //경고! await는 async함수 안에서만 사용할수있음.즉, 최상위 레벨 코드에선 문법 에러가 발생함
+    // }
+
+    //[5-1]최상위 레벨에서도 사용할 수 없음.
+    // let response = await fetch('/article/promise-chaining/user.json');
+    //  let user = await response.json(); //경고! SyntaxError: await is only valid in async functions and the top level bodies of modules
+
+    // //[6] 에러 발생 예제 (리캡용)
+    // // (아래 코드는 user.json 파일이 실제 경로에 없기 때문에 404 Not Found 에러가 발생합니다.)
+    // (async () => {
+    //   // 404 에러 페이지(HTML)를 JSON으로 바꾸려다 SyntaxError가 발생합니다.
+    //   //fetch가 user.json 파일을 찾지 못해서(404 Not Found) 서버가 보내준 HTML 에러 페이지를 response에 담았고,
+    //   // 그 HTML을 response.json()으로 변환하려다 보니 "이건 JSON이 아니다"라는 SyntaxError가 발생
+    //   let response = await fetch("/article/promise-chaining/user.json");
+    //   let user = await response.json();
+    // })();
+
+    //[6-1] 외부 API를 사용한 성공 예제
+    // (위의 [6]번 예제와 달리, 실제로 존재하는 URL을 사용해 정상 동작하는 코드)
+    (async () => {
+      // 로컬 파일 대신, 실제로 존재하는 테스트용 API 주소로 변경
+      let response = await fetch(
+        "https://jsonplaceholder.typicode.com/users/1"
+      );
+      // fetch가 성공했으므로, .json()도 정상적으로 동작합니다.
+      let user = await response.json();
+      console.log("[7]번 예제 성공 데이터:", user);
+      // alert(`사용자 이름: ${user.name}`); // 실습 편의를 위해 alert는 주석 처리
+    })();
+
+    //[6-2] 위 성공한 예제를 try...catch로 감싸서 실패경우도 만들어 줌
+    (async () => {
+      try {
+        // 로컬 파일 대신, 실제로 존재하는 테스트용 API 주소로 변경
+        let response = await fetch(
+          "https://jsonplaceholder.typicode.com/users/1"
+        );
+        // fetch가 성공했으므로, .json()도 정상적으로 동작합니다.
+        let user = await response.json();
+        console.log("[7]번 예제 성공 데이터-2:", user);
+        // alert(`사용자 이름: ${user.name}`); // 실습 편의를 위해 alert는 주석 처리
+      } catch (err) {
+        console.error("[7]번 예제에서 에러 발생-2:", err);
+      }
+    })();
+
+    // [7] 클래스안 메서드에도 async/await 선언 가능
+    // (지금까지 함수 async/await에 대해 공부했는음)
+    class Waiter {
+      async wait() {
+        return await Promise.resolve("주문이요");
+      }
+    }
+    new Waiter().wait().then(alert);
+
+    //[8]에러 발생할때 throw로 에러발생 뱉어낼수도 있지만.
+    //거부되기 전에 약간의 시간이 지체되는 경우가 있다.
+    //(= await 또는 throw가 에러를 던지기 전에 지연발생)
+    //지연발생경우
+    async function f_throws_error() {
+      await Promise.reject(new Error("에러 발생!"));
+    }
+    //지연발생경우2
+    async function f_throws_error2() {
+      throw new Error("에러 발생");
+    }
+
+    //[8-1]try..catch로 에러를 잡을 수 있다.
+    // (위에 지연발생을 제거하고 바로 catch로 보내주기 위해)
+    // async function f_catches_error() {
+    //   try {
+    //     let response = await fetch("http://유효하지-않은-주소");
+    //   } catch (err) {
+    //     // fetch와 response.json에서 발행한 에러 모두를 여기서 잡습니다.
+    //     // fetch에서 발생한 에러를 성공적으로 잡았다는 것을 붉은 배경으로 명확히 보여주기위해 (console.log(err)대신 )
+    //     // console.log(err);
+    //     console.error("[8-1] 에러를 성공적으로 잡았습니다:", err);
+    //   }
+    // }
+    // f_catches_error();
+
+    //[8-2]try..catch가 없는 경우 프라미스 거부 상태
+    // 함수 이름을 f_without_catch로 변경하여 다른 f 함수와의 충돌을 피합니다.
+    async function f_without_catch() {
+      // 이 함수는 유효하지 않은 주소로 fetch를 시도하므로,
+      // 호출 시 항상 거부(rejected) 상태의 Promise를 반환합니다.
+      let response = await fetch("http://유효하지-않은-주소");
+    }
+    // 함수를 호출하고, .catch()를 사용해 거부된 Promise를 처리합니다.
+    // 이렇게 해야 콘솔에 'Uncaught (in promise)' 에러 대신 우리가 원하는 메시지가 출력됩니다.
+    //
+    // .catch()는 에러 발생 시 실행될 '콜백 함수'를 인자로 받습니다.
+    // 매개변수 이름은 'nooo'처럼 아무거나 지어도 문법적으로는 문제가 없습니다.
+    f_without_catch().catch((nooo) => {
+      // .catch()의 콜백 함수 안에서는 여러 줄의 코드를 실행할 수 있습니다.
+      // 1. 일반 정보는 console.log로 출력
+      console.log("[8-2] .catch() 블록이 실행되었습니다.");
+      // 2. 실제 에러 객체는 console.error로 강조해서 출력
+      console.error("[8-2] 잡힌 에러 객체 (이름: nooo):", nooo);
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.min.js"></script>
+</body>
