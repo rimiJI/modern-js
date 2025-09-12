@@ -1,0 +1,80 @@
+<head>
+  <title>객체 프로퍼티- 프로퍼티 플래그와 설명자</title>
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+    .ml-1 {
+      margin-left: 1em;
+    }
+  </style>
+  <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <h3 style="color: rgb(172, 172, 172)">
+    객체 프로퍼티- 프로퍼티 플래그와 설명자
+  </h3>
+  🌿객체 프로퍼티는 값과 함께 ___ 라고 불리는 특별한 속성을 갖는다. = flag
+  🌿flag 3가지 특성 -1. writable 수정? 2.enumerable 반복나열? 3.configurable
+  프로퍼티삭제,플래그수정? 🌿프로퍼티의 정보를 얻을 수있는 메서드 -
+  Object.getOwnPropertyDescriptor(정보얻고싶은객체, 정보얻고자하는 객체 내
+  프로퍼티) 🌿Object.getOwnPropertyDescriptor 메서드를 호출하면 프로퍼티
+  설명자라고 불리는 (________) 객체가 반환된다. - 여기에는 프로퍼티 값과 세
+  플래그에 대한 정보가 모두 담겨있음 🌿플래그 변경할 수 있는 메서드 ->
+  Object.defineProperty - 사용방법
+  Object.defuneProperty(사용객체,사용객체프로퍼티,적용하고자하는프로퍼티
+  설명자:true?false?) 🌿Object.defineProperty 메서드는 @프로퍼티있음→플래그를
+  원하는 대로 변경, @프로퍼티 없음→인수로 넘겨받은 정보를 이용해 새로운프로퍼티
+  생성. @플래그정보 없음→자동으로 false값 🌿평범한 방식으로 객체 프로퍼티
+  user.name 만들었을때 VS defineProperty 사용해 만들었을때 큰 차이점은? - flag
+  설정가능 유무 🌿Object.defineProperty (객체,객체프로퍼티,writable : false)
+
+  <div>
+    <details>
+      <summary></summary>
+      <pre></pre>
+    </details>
+  </div>
+
+  <script>
+    //-----------writable 플래그----------
+    let user = {};
+    Object.defineProperty(user, "name", {
+      value: "얍삐",
+      writable: true, // 값을 수정할 수 있도록 하려면 이 플래그가 true여야 합니다.
+      enumerable: true, //반복
+      configurable: true, //플래그수정
+    });
+
+    console.log(user.name); //얍삐
+    user.name = "예삐";
+    // writable: true로 설정하여 변경됨
+    console.log(user.name); //예삐
+
+    //----------enumerable 플래그---------
+    // 객체에 메서드를 추가하는 올바른 문법.
+    // user.toString() {...} 형태는 클래스나 객체 리터럴 내부에서만 사용 가능함.
+    user.toString = function () {
+      return this.name;
+    };
+  </script>
+
+  <!-- 2. Prism.js의 JavaScript 파일을 불러옵니다.-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</body>
