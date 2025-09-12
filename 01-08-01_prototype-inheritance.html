@@ -1,0 +1,94 @@
+<head>
+  <title>프로토타입 상속</title>
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+    .ml-1 {
+      margin-left: 1em;
+    }
+  </style>
+  <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <h3 style="color: rgb(172, 172, 172)">프로토타입 상속</h3>
+  <!-- JS로 내용을 수정할 부분을 div로 감싸고 id를 부여합니다. -->
+  <div id="notes">
+    🌿프로토타입상속 = 객체(프로퍼티와 메서드를 가진)에 약간 유사하게 기능
+    얹어서 만들고 싶으면 ! 🌿js의 객체(object)는 Prototype이란 숨김 프로퍼티를
+    갖는다. - 값은 null이거나, 다른객체참조임 - 그 참조대상 →
+    프.로.토.타.입(prototype)이라고 부른다. 🌿객체에서 프로퍼티를 읽으려는데
+    해당 프로퍼티가 없으면, 즉 비어있으면 →JS는 자동으로 프.로.토.타.입의
+    프로퍼티를 찾는다. 🌿같은 동작 방식을 <b>프로토타입 상속</b>이라고 부른다.
+    🌿요즘은 __proto__보단 Object.getProtorypeOf나 Object.setPrototypeOf를
+    사용한다. 그치만 배울땐 저게 직관적이어서 저걸루 배움 🌿객체는 오직 하나의
+    Prototype만 있을 수 있다. (물론 체이닝형식으로 참조된걸 참조할수있지! 두개의
+    객체를 상속받을수없다.) 🌿프로토타입은 받아서 읽기만 할수있지 , 상속된
+    객체에서 수정하거나 변경할수없다. 그냥 객체 메서드를 상속받은 것에서 →
+    재할당하여도 → 새로 값이 할당될 뿐.
+  </div>
+  <div>
+    <details>
+      <summary></summary>
+      <pre></pre>
+    </details>
+  </div>
+  <script>
+    // 🌿이걸 찾아서 <br/>🌿로 바꿔라
+    document.getElementById("notes").innerHTML = document
+      .getElementById("notes")
+      .innerHTML.replaceAll("🌿", "<br>🌿");
+  </script>
+
+  <script>
+    //♥️
+    let animal = {
+      eats: true,
+      walk() {
+        console.log("동물이 걸어요");
+      },
+    };
+
+    //🐰
+    let rabbit = {
+      jumps: true,
+    };
+    //------방법1. 프로토타입으로 설정하기(animal을 상속받아서 rabbit에 )--------
+    rabbit.__proto__ = animal;
+
+    //👂
+    let longEar = {
+      earLength: 10,
+      //------방법2. 이런식으로 객체 안쪽에 __proto__넣어줄수있음
+      __proto__: rabbit,
+    };
+
+    //🐰은 ♥️의 프로퍼티를 상속받았다
+    console.log(rabbit.eats); //true
+    console.log(rabbit.jumps); //true
+    rabbit.walk(); //♥️상속받음 //동물이 걸어요
+    longEar.walk(); //♥️상속받은걸 🐰상속받음 //동물이 걸어요
+    console.log(longEar.jumps); //🐰에 상속받음 //true
+
+    //--------prototype이 될(상속 부모)에 get ,set이 있다면?
+  </script>
+
+  <!-- 2. Prism.js의 JavaScript 파일 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</body>
