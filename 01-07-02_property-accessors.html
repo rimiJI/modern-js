@@ -77,6 +77,48 @@
     console.log(user.fullname);
     console.log(user.name);
     console.log(user.surname);
+
+    //get set에 조건 걸어줄 수 있음
+    let user2 = {
+      get name() {
+        return this.inputname;
+      },
+
+      set name(value) {
+        if (value.length < 2) {
+          console.log("입력값이 너무 짧아요...두 글자 이상으로 입력하세요");
+          return; // ← 저장 막기
+        }
+        this.inputname = value;
+      },
+    };
+
+    console.log(user2); //{} 와 객체정보가 뜸
+    user2.name = "Pete";
+    console.log(user2); //{inputname: 'Pete'}
+    console.log(user2.name); //Pete
+    user2.name = "샘"; //입력값이 너무 짧아요...두 글자 이상으로 입력하세요
+    console.log(user2.name); //여전히 Pete (막았으니까 그대로)
+
+    //함수-객체 만들때
+    //---프로퍼티키 변경시, 기존에 생성한 코드 일일이 변경하지 않기위해 getter 사용 ----
+    function user3(name, birth) {
+      this.name = name;
+      this.birth = birth;
+
+      //age는 현재 날짜와 생일을 기준으로 계산
+      Object.defineProperty(this, "age", {
+        get() {
+          let thisYear = new Date().getFullYear();
+          return thisYear - this.birth.getFullYear();
+        },
+      });
+    }
+
+    let john = new user3("John", new Date(1992, 6, 1));
+    console.log(john.birth); //Wed Jul 01 1992 00:00:00 GMT+0900 (한국 표준시)
+    console.log(john.age); //33
+    console.log(user3); //function 인 user3의 정보가 뜬다
   </script>
 
   <!-- 2. Prism.js의 JavaScript 파일 -->
