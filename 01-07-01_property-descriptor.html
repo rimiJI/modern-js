@@ -46,7 +46,8 @@
     새로운프로퍼티 생성. @플래그정보 없음→자동으로 false값 🌿평범한 방식으로
     객체 프로퍼티 user.name 만들었을때 VS defineProperty 사용해 만들었을때 큰
     차이점은? - flag 설정가능 유무 🌿Object.defineProperty
-    (객체,객체프로퍼티,writable : false)
+    (객체,객체프로퍼티,writable : false) 🌿 Object.defineProperties (obj, {
+    prop1: descriptor1, prop2: descriptor2 ...});
   </div>
   <div>
     <details>
@@ -95,8 +96,31 @@
         "enumerable": false,
         "configurable": false
       } */
+    // Math.PI = 3; //ERROR안바뀜
+    console.log(Math.PI);
+
+    //---------이런식으로 내장객체처럼 영.원.히 변경할수없는 프로퍼티있는 객체만들수있음------
+    Object.defineProperty(user, "lastname", {
+      value: "김",
+      writable: false,
+      configurable: false,
+    });
+    console.log(user.lastname);
+    user.lastname = "박";
+    // console.log(user.lastname); //Error안바뀜
+    // Object.defineProperty(user, "lastname", { writable: true }); //Error뜸 -Cannot redefined
+
+    //------여러프로퍼티추가Object.defineProperties (obj, { prop1: descr, prop2: descr...});---------
+    Object.defineProperties(user, {
+      height: { value: 155, writable: false },
+      weight: { value: 30, writable: true },
+    });
+    console.log(user.height, user.weight);
+    user.height = 190; //Error안바뀜
+    user.weight = 72; //바뀜
+    console.log(user.height, user.weight);
   </script>
 
-  <!-- 2. Prism.js의 JavaScript 파일을 불러옵니다.-->
+  <!-- 2. Prism.js의 JavaScript 파일 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 </body>
