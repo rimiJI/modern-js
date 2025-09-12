@@ -31,24 +31,7 @@
     객체 프로퍼티- getter,setter (접근자프로퍼티)
   </h3>
   <!-- JS로 내용을 수정할 부분을 div로 감싸고 id를 부여합니다. -->
-  <div id="notes">
-    🌿객체 프로퍼티는 값과 함께 ___ 라고 불리는 특별한 속성을 갖는다. = flag
-    🌿flag 3가지 특성 -1. writable 수정(쓰기)? 2.enumerable 반복나열(열거)?
-    3.configurable 프로퍼티삭제,플래그수정(구성)? 🌿프로퍼티의 정보를 얻을
-    수있는 메서드 - Object.getOwnPropertyDescriptor(정보얻고싶은객체,
-    정보얻고자하는 객체 내 프로퍼티) 🌿Object.getOwnPropertyDescriptor 메서드를
-    호출하면 프로퍼티 설명자라고 불리는 (________) 객체가 반환된다. - 여기에는
-    프로퍼티 값과 세 플래그에 대한 정보가 모두 담겨있음 🌿플래그 변경할 수 있는
-    메서드 -> Object.defineProperty - 사용방법
-    Object.defineProperty(사용객체,사용객체프로퍼티,적용하고자하는프로퍼티
-    설명자:true?false?) 🌿Object.defineProperty 메서드는 @프로퍼티있음→플래그를
-    원하는 대로 변경, @프로퍼티 없음→인수로 넘겨받은 정보를 이용해
-    새로운프로퍼티 생성. @플래그정보 없음→자동으로 false값 🌿평범한 방식으로
-    객체 프로퍼티 user.name 만들었을때 VS defineProperty 사용해 만들었을때 큰
-    차이점은? - flag 설정가능 유무 🌿Object.defineProperty
-    (객체,객체프로퍼티,writable : false) 🌿 Object.defineProperties (obj, {
-    prop1: descriptor1, prop2: descriptor2 ...});
-  </div>
+  <div id="notes">🌿접근자</div>
   <div>
     <details>
       <summary></summary>
