@@ -1,0 +1,70 @@
+<!-- 하나도 모르겠숴!!!!!!!!!!!!!!!!!!!!!!! -->
+<head>
+  <title>함수의 prototype 프로퍼티</title>
+  <style>
+    pre {
+      /* 2. '프리텐다드'를 가장 먼저 사용하도록 설정합니다. */
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px; /* 기본 폰트 크기를 살짝 키워 가독성을 높입니다. */
+      line-height: 1.6; /* 줄 간격을 넓혀서 덜 답답하게 만듭니다. */
+      background-color: #f7f7f7; /* 아주 연한 회색 배경을 추가해 영역을 구분합니다. */
+      padding: 1em; /* 안쪽 여백을 줍니다. */
+      border-radius: 8px; /* 모서리를 둥글게 만듭니다. */
+    }
+    .red {
+      color: red;
+      font-weight: bold;
+    }
+    .ml-1 {
+      margin-left: 1em;
+    }
+  </style>
+  <!-- 1. Prism.js의 CSS 파일을 불러옵니다 (기본 밝은 테마) -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+  <h3 style="color: rgb(172, 172, 172)">함수의 prototype 프로퍼티</h3>
+  <!-- JS로 내용을 수정할 부분을 div로 감싸고 id를 부여합니다. -->
+  <div id="notes">
+    -__proto__는 브라우저를 대상으로 개발하고 있다면 구식이어서, 더는 사용하지
+    말깅 ! -그 대신 -Object.create(프로토타입객체)-Object.getPrototypeOf(obj) _
+    obj의 [[Prototype]]을 반환-Object.setPrototypeOf(obj, proto) – obj의
+    [[Prototype]]이 proto가 되도록 설정 -공용으로 쓰이는 메서드는 prototype에
+    둬서 여러 객체가 공유 가능 -new로 만든 객체가 prototype을 통해 메서드를 찾아
+    쓴다. -메서드를 prototype에 안두면,객체마다 반복생성되어 → 비효율을
+    초례한다.
+  </div>
+  <div>
+    <details>
+      <summary></summary>
+      <pre></pre>
+    </details>
+  </div>
+  <script>
+    // -이걸 찾아서 <br/>◌로 바꿔라
+    document.getElementById("notes").innerHTML = document
+      .getElementById("notes")
+      .innerHTML.replaceAll("-", "<br>◌ ");
+  </script>
+
+  <script>
+    let animal = { eats: true };
+    //-------새로운 객체 생성 ( 프로토타입이 animal인)--------
+    let rabbit = Object.create(animal);
+
+    console.log(rabbit.eats); //true
+    console.log(Object.getPrototypeOf(rabbit)); //{eats: true}
+    console.log(animal); //{eats: true}
+    Object.setPrototypeOf(rabbit, {}); //🍎rabbit 프로토타입을 { } 로 바꾼다.
+    console.log(Object.getPrototypeOf(rabbit)); // {}
+    console.log(animal); //{eats: true} - rabbit의 프로토타입만 바꿔준것이니깐 animal은 그대로다
+  </script>
+
+  <!-- 2. Prism.js의 JavaScript 파일 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</body>
