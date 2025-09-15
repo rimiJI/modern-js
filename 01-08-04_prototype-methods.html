@@ -58,6 +58,7 @@
     let rabbit = Object.create(animal);
 
     console.log(rabbit.eats); //true
+    //--------프로토타입 가져오기 getPrototypeOf ------------
     console.log(Object.getPrototypeOf(rabbit)); //{eats: true}
     console.log(animal); //{eats: true}
     Object.setPrototypeOf(rabbit, {}); //🍎rabbit 프로토타입을 { } 로 바꾼다.
