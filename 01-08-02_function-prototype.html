@@ -29,7 +29,18 @@
 <body>
   <h3 style="color: rgb(172, 172, 172)">함수의 prototype 프로퍼티</h3>
   <!-- JS로 내용을 수정할 부분을 div로 감싸고 id를 부여합니다. -->
-  <div id="notes"></div>
+  <div id="notes">
+    -모든 함수는 기본적으로 prototype 프로퍼티를 갖고있음. -prototype은 함수가
+    생성자로쓰일때 ( new 함수이름( ) ) 이렇게 해서 만들어질때,,, new를 이용해서
+    만든 객체의 [[Prototype]]를 가르킨다. 그 말은 즉, 새 객체의 함수가 prototype
+    객체를 상속한다. -기본적으로 F.prototype에는 constructor라는 프로퍼티가
+    있고, 그건 함수 그 자체를 가르킴 -주의ㅣprototype을 덮어쓰면 기존에 있던
+    constructor가 사라질 수 있어서 -덮어씌워졌다면 , 수동으로 다시 constructor를
+    정의해줘야함 -기억 포인트 -프로토타입 내부에 속성만 추가 → constructor 유지
+    → true -프로토타입 객체를 통째로 교체 → constructor 사라짐 → false -졸린
+    머리 요약: <br />“추가(add) = true / 교체(replace) = false”-속성 추가는 OK,
+    객체 교체는 constructor를 같이 넣어줘야 OK
+  </div>
   <div>
     <details>
       <summary></summary>
@@ -37,13 +48,67 @@
     </details>
   </div>
   <script>
-    // 🌿이걸 찾아서 <br/>🌿로 바꿔라
+    // -이걸 찾아서 <br/>◌로 바꿔라
     document.getElementById("notes").innerHTML = document
       .getElementById("notes")
-      .innerHTML.replaceAll("🌿", "<br>🌿");
+      .innerHTML.replaceAll("-", "<br>◌");
   </script>
 
-  <script></script>
+  <script>
+    //-----기본동작----
+    //생성자로 쓰일 함수
+    // 내부적으로 Rabbit.prototype = { constructor: Rabbit } 만들어짐
+    function Rabbit() {}
+
+    //객체생성
+    let r = new Rabbit();
+    console.log(r.__proto__ === Rabbit.prototype); // true
+
+    // ----생성자함수에 메서드 추가----
+    Rabbit.prototype.jump = function () {
+      console.log("펄쩍!!");
+    };
+    r.jump(); //펄쩍!!
+
+    console.log(Rabbit); //ƒ Rabbit() {}
+    console.log(Rabbit.prototype); //{jump: ƒ}
+
+    //-----프로토타입 교체 주의 -----
+    //1.생성자
+    //안에 Lion.prototype={constructor:Lion}  있음
+    function Lion() {}
+    //2.프로토타입 **통채로** 새 객체로 교체
+    Lion.prototype = {
+      jump() {
+        console.log("어흥");
+      },
+    };
+    //3.객체생성
+    let L = new Lion();
+    // 출력테스트
+    L.jump(); // 어흥
+    console.log(L.constructor === Lion); //👉 false ❗ WHY??
+    //왜? false?
+    // Lion.prototype을 통째로 바꾸면서 JS가 자동으로 만들어준
+    // { constructor: Lion } 객체가 사라졌기 때문
+    //새 객체엔 constructor 프로퍼티가 없으니
+    // L.constructor는 프로토타입 체인을 따라 올라가 Object를 가리킴
+
+    // --------해결방법----------
+    // 아래 코드는 Lion.prototype을 다시 설정하지만,
+    // 이전에 생성된 L 객체의 프로토타입에는 영향을 주지 않습니다.
+    Lion.prototype = {
+      jump() {
+        console.log("어흥~");
+      },
+      constructor: Lion,
+    };
+    console.log(L.constructor === Lion); //👉 false ❗ 여전히 L은 옛날 프로토타입을 보고 있음
+
+    // 올바른 방법: 프로토타입을 올바르게 설정한 *후에* 인스턴스를 생성
+    let L2 = new Lion();
+    console.log(L2.constructor === Lion); //👉 true ✨ 이제 올바르게 동작
+  </script>
 
   <!-- 2. Prism.js의 JavaScript 파일 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
