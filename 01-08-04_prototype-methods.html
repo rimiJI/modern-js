@@ -61,9 +61,33 @@
     //--------프로토타입 가져오기 getPrototypeOf ------------
     console.log(Object.getPrototypeOf(rabbit)); //{eats: true}
     console.log(animal); //{eats: true}
+    //-------프로토타입 설정하기 setPrototypeOf -------------
     Object.setPrototypeOf(rabbit, {}); //🍎rabbit 프로토타입을 { } 로 바꾼다.
     console.log(Object.getPrototypeOf(rabbit)); // {}
     console.log(animal); //{eats: true} - rabbit의 프로토타입만 바꿔준것이니깐 animal은 그대로다
+    //-------설명자를 이용해 새 객체에 프로퍼티 추가.
+    let rabbit2 = Object.create(animal, { jumps: { value: true } });
+    console.log(rabbit2.jumps); //true
+    //속도가 중요하다면 기존 객체의 prototype을 변경하지 말기
+    // 하지만 대개는 객체를 생성할 때만 [[Prototype]]을 설정하고 이후엔 수정하지 않습니다.
+    // rabbit이 animal을 상속받도록 설정하고 난 이후엔 상속 관계를 잘 변경하지 않습니다.
+    // 자바스크립트 엔진은 이런 시나리오를 토대로 최적화
+
+    // Object.setPrototypeOf나 obj.__proto__=를 써서 프로토타입을 그때그때 바꾸는 연산은 객체 프로퍼티 접근 관련
+    // 최적화를 망치기 때문에 성능에 나쁜 영향
+
+    //-------------과제----------------
+    //-----사전에 toString 추가하기-------
+    let dictionary = Object.create(null, {});
+    // 데이터를 추가합니다.
+    dictionary.apple = "Apple";
+    dictionary.__proto__ = "test"; // __proto__는 여기서 일반적인 프로퍼티 키입니다.
+    // 반복문에는 apple과 __proto__ 만 있습니다.
+    for (let key in dictionary) {
+      alert(key); // "apple" 다음 "__proto__"입니다.
+    }
+    // toString이 동작하는 부분입니다.
+    alert(dictionary); // "apple,__proto__"
   </script>
 
   <!-- 2. Prism.js의 JavaScript 파일 -->
