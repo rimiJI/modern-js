@@ -1,3 +1,4 @@
+<!-- 하나도 모르겠숴!!!!!!!!!!!!!!!!!!!!!!! -->
 <head>
   <title>함수의 prototype 프로퍼티</title>
   <style>
@@ -29,7 +30,24 @@
 <body>
   <h3 style="color: rgb(172, 172, 172)">함수의 prototype 프로퍼티</h3>
   <!-- JS로 내용을 수정할 부분을 div로 감싸고 id를 부여합니다. -->
-  <div id="notes"></div>
+  <div id="notes">
+    🐰 Function.prototype 뭐하는 거냐 생각해봐: 마법의 주형(틀, 청사진) 있어.
+    이걸로 토끼(Rabbit) 같은 걸 많이 찍어낼 수 있어. Function.prototype 은 그
+    주형 중 하나야. 어떤 함수 Rabbit을 만들면, 자동으로 Rabbit.prototype 이라는
+    주형이 생긴다. → 기본적으로 거기엔 “이 주형으로 찍은 토끼들” 객체들이 “어떤
+    생성자로 찍혔는지(constructor)” 알려주는 칸이 있음. 우리가 new Rabbit()
+    하면, 새로운 토끼 객체가 만들어지는데, 이 토끼의 청사진 복사본(주형)도
+    연결됨. 그래서 주형에 있는 것(예: 어떤 특징들)이 토끼 객체에도 보이는 거야.
+    -⚠️ 조심할 것: 주형을 갈아끼우면 청사진을 통째로 바꾸면(=주형을 덮어쓰면),
+    기존에 있던 “어떤 생성자로 찍혔는지(constructor)” 정보가 사라질 수 있음.
+    예를 들면: 처음에 Rabbit.prototype에는 constructor = Rabbit 이 있었음.
+    그런데 우리가 Rabbit.prototype = { jump: … } 이렇게 통째로 바꿔버리면, 그
+    안에 constructor: Rabbit 이 없으니까 → “이 토끼가 어떤 생성자 함수로
+    만들어졌는지”를 잃어버림. -🎯 핵심 요약 Function.prototype 은 함수가
+    만들어질 때 자동으로 생기는 주형 같은 것. new로 객체 만들면 그 주형을 따라
+    상속됨. 주형을 바꿀 땐 조심! 원래 있던 constructor 정보가 없어질 수 있으니
+    꼭 같이 챙겨줘야 함.
+  </div>
   <div>
     <details>
       <summary></summary>
@@ -43,7 +61,44 @@
       .innerHTML.replaceAll("-", "<br>◌");
   </script>
 
-  <script></script>
+  <script>
+    // ------'prototype' 변경하기--뭔말----
+    function Rabbit() {}
+    Rabbit.prototype = { eats: true }; //constructor없는 상태 (그 함수 자체를 가르킴)
+    let rabbit = new Rabbit();
+    delete Rabbit.prototype.eats;
+    console.log(rabbit.eats);
+
+    //---다시해보기 너무 어렵다----
+    //----동일한 생성자 함수로 객체만들기.
+    function obj() {}
+    console.log(obj);
+    console.log(obj.prototype);
+    let obj2 = new obj.constructor();
+    console.log(obj2);
+    console.log(obj2.prototype);
+
+    // ----아오 헷갈려 지피티와다시 공부
+    // 🥕 1. 기본 주형(Prototype)
+    function Rabbit() {} // 토끼 설계도(함수)
+    let r = new Rabbit();
+
+    console.log(r.__proto__ === Rabbit.prototype);
+    console.log(r.constructor === Rabbit);
+    //뜻: 새 토끼(r)은 Rabbit 설계도의 주형을 그대로 따라감
+
+    // 🥕 2. 주형을 통째로 바꾸면?
+    function Rabbit2() {}
+    Rabbit2.prototype = {
+      jump() {
+        console.log("쩜푸"); // ♦️새 주형으로 교체. 이 객체에는 constructor가 없
+      },
+      // ❗🛠️해결책: constructor를 수동으로 다시 연결
+      constructor: Rabbit2,
+    };
+    let r2 = new Rabbit2();
+    console.log(r2.constructor === Rabbit2); //true
+  </script>
 
   <!-- 2. Prism.js의 JavaScript 파일 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
